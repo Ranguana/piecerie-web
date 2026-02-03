@@ -1,0 +1,174 @@
+import { supabase } from '@/lib/supabase'
+import { Profile, Artwork } from '@/types'
+import { notFound } from 'next/navigation'
+import Link from 'next/link'
+
+interface PageProps {
+  params: Promise<{ slug: string }>
+}
+
+async function getProfile(slug: string): Promise<Profile | null> {
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('slug', slug)
+    .eq('is_public', true)
+    .single()
+
+  if (error || !data) return null
+  return data
+}
+
+async function getPublicArtworks(userId: string): Promise<Artwork[]> {
+  const { data, error } = await supabase
+    .from('artworks')
+    .select('*')
+    .eq('user_id', userId)
+    .eq('is_public', true)
+    .order('created_at', { ascending: false })
+
+  if (error) return []
+  return data || []
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params
+  const profile = await getProfile(slug)
+
+  if (!profile) {
+    return { title: 'Profile Not Found - Piecerie' }
+  }
+
+  return {
+    title: `${profile.display_name || 'Artist'} - Piecerie`,
+    description: profile.bio || `View artwork by ${profile.display_name || 'this artist'} on Piecerie`,
+  }
+}
+
+export default async function ProfilePage({ params }: PageProps) {
+  const { slug } = await params
+  const profile = await getProfile(slug)
+
+  if (!profile) {
+    notFound()
+  }
+
+  const artworks = await getPublicArtworks(profile.user_id)
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="border-b">
+        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+          <Link href="/" className="text-xl font-bold">
+            Piecerie
+          </Link>
+        </div>
+      </header>
+
+      {/* Profile Section */}
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="flex flex-col md:flex-row gap-8 mb-12">
+          {/* Logo/Avatar */}
+          {profile.logo_url && (
+            <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-100 flex-shrink-0">
+              <img
+                src={profile.logo_url}
+                alt={profile.display_name || 'Artist'}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+
+          {/* Info */}
+          <div className="flex-1">
+            <h1 className="text-3xl font-bold mb-2">
+              {profile.display_name || 'Artist'}
+            </h1>
+
+            {profile.bio && (
+              <p className="text-gray-600 mb-4 whitespace-pre-wrap">{profile.bio}</p>
+            )}
+
+            {/* Contact Info */}
+            <div className="flex flex-wrap gap-4 text-sm">
+              {profile.contact_email && (
+                <a
+                  href={`mailto:${profile.contact_email}`}
+                  className="text-blue-600 hover:underline"
+                >
+                  {profile.contact_email}
+                </a>
+              )}
+              {profile.website && (
+                <a
+                  href={profile.website.startsWith('http') ? profile.website : `https://${profile.website}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  Website
+                </a>
+              )}
+              {profile.instagram && (
+                <a
+                  href={`https://instagram.com/${profile.instagram.replace('@', '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  @{profile.instagram.replace('@', '')}
+                </a>
+              )}
+              {profile.contact_phone && (
+                <a href={`tel:${profile.contact_phone}`} className="text-gray-600">
+                  {profile.contact_phone}
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Artwork Grid */}
+        {artworks.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {artworks.map((artwork) => (
+              <div key={artwork.id} className="group">
+                <div className="aspect-square rounded-lg overflow-hidden bg-gray-100">
+                  <img
+                    src={artwork.image_url}
+                    alt={artwork.title}
+                    className="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
+                  />
+                </div>
+                <div className="mt-2">
+                  <h3 className="font-medium text-sm truncate">{artwork.title}</h3>
+                  {artwork.medium && (
+                    <p className="text-xs text-gray-500">{artwork.medium}</p>
+                  )}
+                  {artwork.price && (
+                    <p className="text-sm font-medium">${artwork.price.toLocaleString()}</p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12 text-gray-500">
+            No public artworks yet
+          </div>
+        )}
+      </div>
+
+      {/* Footer */}
+      <footer className="border-t mt-12">
+        <div className="max-w-6xl mx-auto px-4 py-6 text-center text-sm text-gray-500">
+          Powered by{' '}
+          <a href="https://piecerie.com" className="text-blue-600 hover:underline">
+            Piecerie
+          </a>
+        </div>
+      </footer>
+    </div>
+  )
+}
