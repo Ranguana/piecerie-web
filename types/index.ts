@@ -14,6 +14,15 @@ export interface Profile {
   updated_at: string
 }
 
+export interface Collection {
+  id: string
+  name: string
+  description?: string
+  user_id: string
+  created_at: string
+  is_public?: boolean
+}
+
 export interface Artwork {
   id: string
   title: string

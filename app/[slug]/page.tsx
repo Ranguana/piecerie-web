@@ -1,7 +1,8 @@
 import { supabase } from '@/lib/supabase'
-import { Profile, Artwork } from '@/types'
+import { Profile, Artwork, Collection } from '@/types'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import ProfileContent from './ProfileContent'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -19,16 +20,35 @@ async function getProfile(slug: string): Promise<Profile | null> {
   return data
 }
 
-async function getPublicArtworks(userId: string): Promise<Artwork[]> {
-  const { data, error } = await supabase
-    .from('artworks')
+async function getPublicCollectionsWithArtworks(userId: string): Promise<(Collection & { artworks: Artwork[] })[]> {
+  // Get public collections
+  const { data: collections, error: colError } = await supabase
+    .from('collections')
     .select('*')
     .eq('user_id', userId)
     .eq('is_public', true)
     .order('created_at', { ascending: false })
 
-  if (error) return []
-  return data || []
+  if (colError || !collections) return []
+
+  // Get artworks for those collections
+  const collectionIds = collections.map(c => c.id)
+
+  if (collectionIds.length === 0) return []
+
+  const { data: artworks, error: artError } = await supabase
+    .from('artworks')
+    .select('*')
+    .in('collection_id', collectionIds)
+    .order('created_at', { ascending: false })
+
+  if (artError) return []
+
+  // Group artworks by collection
+  return collections.map(collection => ({
+    ...collection,
+    artworks: (artworks || []).filter(a => a.collection_id === collection.id)
+  }))
 }
 
 export async function generateMetadata({ params }: PageProps) {
@@ -53,7 +73,7 @@ export default async function ProfilePage({ params }: PageProps) {
     notFound()
   }
 
-  const artworks = await getPublicArtworks(profile.user_id)
+  const collections = await getPublicCollectionsWithArtworks(profile.user_id)
 
   return (
     <div className="min-h-screen bg-white">
@@ -129,35 +149,8 @@ export default async function ProfilePage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* Artwork Grid */}
-        {artworks.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {artworks.map((artwork) => (
-              <div key={artwork.id} className="group">
-                <div className="aspect-square rounded-lg overflow-hidden bg-gray-100">
-                  <img
-                    src={artwork.image_url}
-                    alt={artwork.title}
-                    className="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
-                  />
-                </div>
-                <div className="mt-2">
-                  <h3 className="font-medium text-sm truncate">{artwork.title}</h3>
-                  {artwork.medium && (
-                    <p className="text-xs text-gray-500">{artwork.medium}</p>
-                  )}
-                  {artwork.price && (
-                    <p className="text-sm font-medium">${artwork.price.toLocaleString()}</p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12 text-gray-500">
-            No public artworks yet
-          </div>
-        )}
+        {/* Artwork Content with View Toggle */}
+        <ProfileContent collections={collections} />
       </div>
 
       {/* Footer */}
