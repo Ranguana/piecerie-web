@@ -5,7 +5,7 @@ Public-facing website for artist profile pages at `piecerie.com/p/[artist-slug]`
 ## Setup
 
 1. Run the SQL in `supabase-profiles.sql` in your Supabase dashboard
-2. Copy `.env.local.example` to `.env.local` and add your Supabase credentials
+2. Copy `env.example` to `.env.local` and add your Supabase credentials
 3. `npm install`
 4. `npm run dev`
 
