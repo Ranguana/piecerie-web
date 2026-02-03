@@ -15,7 +15,7 @@ export default function Home() {
           Download App
         </Link>
         <Link
-          href="/p/demo"
+          href="/demo"
           className="border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-50"
         >
           View Demo Profile
