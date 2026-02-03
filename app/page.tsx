@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-8">
-      <h1 className="text-4xl font-bold mb-4">Piecerie</h1>
+      <img src="/logo.png" alt="Piecerie" className="h-24 mb-4" />
       <p className="text-gray-600 mb-8 text-center max-w-md">
         Artwork management for artists. Create beautiful portfolios, line sheets, and catalogs.
       </p>

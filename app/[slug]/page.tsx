@@ -80,8 +80,8 @@ export default async function ProfilePage({ params }: PageProps) {
       {/* Header */}
       <header className="border-b">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold">
-            Piecerie
+          <Link href="/">
+            <img src="/logo.png" alt="Piecerie" className="h-8" />
           </Link>
         </div>
       </header>
