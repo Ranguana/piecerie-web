@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'How to Use - Piecerie',
+  title: 'Resources - Piecerie',
   description: 'Learn how to use Piecerie to manage your artwork, create PDFs, and more.',
 }
 
@@ -161,8 +161,7 @@ export default function HowToUsePage() {
             <img src="/logo.png" alt="Piecerie" className="h-8" />
           </Link>
           <nav className="flex gap-6 text-sm">
-            <Link href="/about" className="text-gray-600 hover:text-black">About</Link>
-            <Link href="/how-to-use" className="text-black font-medium">How to Use</Link>
+            <Link href="/resources" className="text-black font-medium">Resources</Link>
             <Link href="/pricing" className="text-gray-600 hover:text-black">Pricing</Link>
           </nav>
         </div>
@@ -170,7 +169,7 @@ export default function HowToUsePage() {
 
       {/* Content */}
       <main className="max-w-3xl mx-auto px-4 py-16">
-        <h1 className="text-4xl font-bold mb-4">How to Use Piecerie</h1>
+        <h1 className="text-4xl font-bold mb-4">Resources</h1>
         <p className="text-xl text-gray-600 mb-12">
           Everything you need to know to get started and make the most of Piecerie.
         </p>

@@ -15,8 +15,7 @@ export default function PricingPage() {
             <img src="/logo.png" alt="Piecerie" className="h-8" />
           </Link>
           <nav className="flex gap-6 text-sm">
-            <Link href="/about" className="text-gray-600 hover:text-black">About</Link>
-            <Link href="/how-to-use" className="text-gray-600 hover:text-black">How to Use</Link>
+            <Link href="/resources" className="text-gray-600 hover:text-black">Resources</Link>
             <Link href="/pricing" className="text-black font-medium">Pricing</Link>
           </nav>
         </div>

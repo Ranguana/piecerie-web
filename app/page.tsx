@@ -10,8 +10,7 @@ export default function Home() {
             <img src="/logo.png" alt="Piecerie" className="h-8" />
           </Link>
           <nav className="flex gap-6 text-sm">
-            <Link href="/about" className="text-gray-600 hover:text-black">About</Link>
-            <Link href="/how-to-use" className="text-gray-600 hover:text-black">How to Use</Link>
+            <Link href="/resources" className="text-gray-600 hover:text-black">Resources</Link>
             <Link href="/pricing" className="text-gray-600 hover:text-black">Pricing</Link>
           </nav>
         </div>
@@ -44,8 +43,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
           <div>© {new Date().getFullYear()} Piecerie. All rights reserved.</div>
           <div className="flex gap-6">
-            <Link href="/about" className="hover:text-black">About</Link>
-            <Link href="/how-to-use" className="hover:text-black">How to Use</Link>
+            <Link href="/resources" className="hover:text-black">Resources</Link>
             <Link href="/pricing" className="hover:text-black">Pricing</Link>
             <a href="mailto:support@piecerie.com" className="hover:text-black">Contact</a>
           </div>
