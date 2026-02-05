@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <!-- Background -->
   <rect width="32" height="32" fill="#faf9f7"/>
-  <!-- Red circle -->
-  <circle cx="10" cy="10" r="7" fill="#e63946"/>
-  <!-- Yellow rectangle -->
-  <rect x="18" y="4" width="10" height="10" fill="#f4d35e"/>
-  <!-- Blue square -->
-  <rect x="4" y="18" width="10" height="10" fill="#1d4ed8"/>
-  <!-- Black rectangle -->
-  <rect x="18" y="18" width="10" height="10" fill="#1a1a1a"/>
+  <!-- Coral circle -->
+  <circle cx="10" cy="10" r="7" fill="#e85a4f"/>
+  <!-- Mustard rectangle -->
+  <rect x="18" y="4" width="10" height="10" fill="#d9a441"/>
+  <!-- Teal square -->
+  <rect x="4" y="18" width="10" height="10" fill="#2d7d6e"/>
+  <!-- Peach rectangle -->
+  <rect x="18" y="18" width="10" height="10" fill="#e8927c"/>
 </svg>

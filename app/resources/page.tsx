@@ -137,19 +137,24 @@ export default function ResourcesPage() {
       {/* Header */}
       <header className="border-b border-[#1a1a1a]/10">
         <div className="max-w-6xl mx-auto px-8 py-6 flex items-center justify-between">
-          <Link href="/" className="text-2xl italic">
-            Piecerie
+          <Link href="/" className="text-2xl font-bold tracking-tight">
+            <span className="text-[#e85a4f]">P</span>
+            <span className="text-[#2d2d2d]">ie</span>
+            <span className="text-[#d9a441]">c</span>
+            <span className="text-[#2d2d2d]">e</span>
+            <span className="text-[#2d7d6e]">r</span>
+            <span className="text-[#2d2d2d]">ie</span>
           </Link>
           <nav className="flex gap-10 text-sm tracking-wide">
-            <Link href="/resources" className="text-[#9a3412]">Resources</Link>
-            <Link href="/pricing" className="hover:text-[#9a3412]">Pricing</Link>
+            <Link href="/resources" className="text-[#2d7d6e]">Resources</Link>
+            <Link href="/pricing" className="hover:text-[#2d7d6e]">Pricing</Link>
           </nav>
         </div>
       </header>
 
       {/* Content */}
       <main className="max-w-4xl mx-auto px-8 py-20">
-        <p className="text-sm tracking-[0.3em] uppercase text-[#9a3412] mb-4">Resources</p>
+        <p className="text-sm tracking-[0.3em] uppercase text-[#2d7d6e] mb-4">Resources</p>
         <h1 className="text-5xl md:text-6xl italic font-normal mb-6">How to use Piecerie</h1>
         <p className="text-lg text-[#1a1a1a]/60 mb-16 max-w-xl">
           Everything you need to know to get started and make the most of your account.
@@ -163,7 +168,7 @@ export default function ResourcesPage() {
               <a
                 key={section.category}
                 href={`#${section.category.toLowerCase().replace(/\s+/g, '-')}`}
-                className="text-[15px] hover:text-[#9a3412]"
+                className="text-[15px] hover:text-[#2d7d6e]"
               >
                 {section.category}
               </a>
@@ -198,7 +203,7 @@ export default function ResourcesPage() {
           </p>
           <a
             href="mailto:support@piecerie.com"
-            className="inline-block bg-[#1a1a1a] text-[#faf9f7] px-8 py-4 text-sm tracking-wide hover:bg-[#9a3412]"
+            className="inline-block bg-[#1a1a1a] text-[#faf9f7] px-8 py-4 text-sm tracking-wide hover:bg-[#2d7d6e]"
           >
             Contact Support
           </a>
