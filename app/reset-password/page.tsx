@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { createClient } from '@supabase/supabase-js'
 
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://dkgyowbgueylstwgmmfd.supabase.co',
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRrZ3lvd2JndWV5bHN0d2dtbWZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwODY4NDAsImV4cCI6MjA2MjY2Mjg0MH0.geLr4bYoHZBdkRnXILSl5Vj7KDMH7DGR2Bt-qlbWl04'
+  'https://dkgyowbgueylstwgmmfd.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRrZ3lvd2JndWV5bHN0d2dtbWZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk2NDMwNzIsImV4cCI6MjA4NTIxOTA3Mn0.6qEpr3-NoIBECObJl7ykwChJ8Y4xBd5Rp0_9B8mYVY8'
 )
 
 export default function ResetPasswordPage() {
