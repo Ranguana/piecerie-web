@@ -30,10 +30,7 @@ export default function PricingPage() {
       <main className="max-w-6xl mx-auto px-8 py-20">
         <div className="text-center mb-20">
           <p className="text-sm tracking-[0.3em] uppercase text-[#2d7d6e] mb-4">Pricing</p>
-          <h1 className="text-5xl md:text-6xl italic font-normal mb-4">Simple & transparent</h1>
-          <p className="text-lg text-[#1a1a1a]/60">
-            Start free. Upgrade when you need more.
-          </p>
+          <h1 className="text-3xl md:text-4xl italic font-normal">Start free. Upgrade when you need more.</h1>
         </div>
 
         {/* Pricing Cards */}
@@ -42,7 +39,7 @@ export default function PricingPage() {
           <div className="border border-[#1a1a1a]/10 p-10 bg-white">
             <p className="text-sm tracking-[0.2em] uppercase text-[#1a1a1a]/40 mb-2">Free</p>
             <h2 className="text-3xl italic mb-2">Get Started</h2>
-            <p className="text-[#1a1a1a]/60 mb-8">Everything you need to begin</p>
+            <p className="text-[#1a1a1a]/60 mb-8">A taste of the studio</p>
             <div className="mb-10">
               <span className="text-5xl font-light">$0</span>
               <span className="text-[#1a1a1a]/40 ml-2">/month</span>
@@ -54,7 +51,11 @@ export default function PricingPage() {
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#2d7d6e] mt-1">—</span>
-                <span>All editing features</span>
+                <span>Basic image editing</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-[#2d7d6e] mt-1">—</span>
+                <span>3 PDF templates (with Piecerie watermark)</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#2d7d6e] mt-1">—</span>
@@ -62,15 +63,7 @@ export default function PricingPage() {
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#2d7d6e] mt-1">—</span>
-                <span>Basic PDF templates</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#2d7d6e] mt-1">—</span>
                 <span>Portfolio page</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#2d7d6e] mt-1">—</span>
-                <span>1 store integration</span>
               </li>
             </ul>
             <Link
@@ -88,7 +81,7 @@ export default function PricingPage() {
             </div>
             <p className="text-sm tracking-[0.2em] uppercase text-[#1a1a1a]/40 mb-2">Pro</p>
             <h2 className="text-3xl italic mb-2">Go Professional</h2>
-            <p className="text-[#1a1a1a]/60 mb-8">For serious artists</p>
+            <p className="text-[#1a1a1a]/60 mb-8">The full studio</p>
             <div className="mb-10">
               <span className="text-5xl font-light">$9.99</span>
               <span className="text-[#1a1a1a]/40 ml-2">/month</span>
@@ -101,7 +94,11 @@ export default function PricingPage() {
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#2d7d6e] mt-1">—</span>
-                <span>All PDF templates, watermark-free</span>
+                <span>All PDF templates</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-[#2d7d6e] mt-1">—</span>
+                <span>Watermark-free PDF exports</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#2d7d6e] mt-1">—</span>
@@ -109,19 +106,19 @@ export default function PricingPage() {
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#2d7d6e] mt-1">—</span>
-                <span>Inquiry & commission form</span>
+                <span>Public artist profile with custom URL</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#2d7d6e] mt-1">—</span>
-                <span>Etsy + Shopify integrations</span>
+                <span>Instagram, Etsy & Shopify integrations</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#2d7d6e] mt-1">—</span>
-                <span>Inventory sync & QR codes</span>
+                <span>QR codes for your public profile</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#2d7d6e] mt-1">—</span>
-                <span>Analytics + Priority support</span>
+                <span>Priority support</span>
               </li>
             </ul>
             <Link
@@ -144,11 +141,11 @@ export default function PricingPage() {
             </div>
             <div className="border-b border-[#1a1a1a]/10 pb-6">
               <h3 className="font-normal mb-2">What happens if I cancel Pro?</h3>
-              <p className="text-[#1a1a1a]/60 text-[15px]">Your artwork stays safe. You'll be limited to 30 pieces and basic features.</p>
+              <p className="text-[#1a1a1a]/60 text-[15px]">Your artwork stays safe. You'll be limited to 30 artworks and basic features.</p>
             </div>
             <div className="border-b border-[#1a1a1a]/10 pb-6">
-              <h3 className="font-normal mb-2">Can I switch store integrations?</h3>
-              <p className="text-[#1a1a1a]/60 text-[15px]">Yes. On Free, you can use one at a time. Pro includes both.</p>
+              <h3 className="font-normal mb-2">Which store integrations are included?</h3>
+              <p className="text-[#1a1a1a]/60 text-[15px]">Pro includes Instagram import, plus Etsy and Shopify integrations.</p>
             </div>
             <div className="border-b border-[#1a1a1a]/10 pb-6">
               <h3 className="font-normal mb-2">Is there an annual plan?</h3>
