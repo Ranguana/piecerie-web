@@ -23,7 +23,7 @@ const sections = [
       },
       {
         q: 'Is my data backed up?',
-        a: 'Yes. All your artwork and data is securely stored in the cloud and synced across your devices. Your images are stored separately from your device photos.',
+        a: 'Yes. All your artwork and data is securely stored in the cloud and synced across your devices.',
       },
     ],
   },
@@ -36,15 +36,15 @@ const sections = [
       },
       {
         q: 'Can I organize artwork into groups?',
-        a: 'Yes! Use Collections to group related artwork. Go to Collections, create a new collection, then add artwork to it. Collections can be made public to appear on your profile.',
+        a: 'Yes! Use Collections to group related artwork. Collections can be made public to appear on your profile.',
       },
       {
         q: 'How do I reorder my artwork?',
-        a: 'In your gallery, press and hold any artwork, then drag it to a new position. On desktop, you can also drag and drop.',
+        a: 'Press and hold any artwork, then drag it to a new position.',
       },
       {
         q: 'Can I delete artwork?',
-        a: 'Yes. Tap on the artwork to view it, scroll down, and tap "Delete Artwork". This cannot be undone.',
+        a: 'Yes. Tap on the artwork, scroll down, and tap "Delete Artwork". This cannot be undone.',
       },
     ],
   },
@@ -53,23 +53,19 @@ const sections = [
     questions: [
       {
         q: 'What PDF templates are available?',
-        a: 'Piecerie offers 6 templates: Grid (overview), Catalog (one per page), Line Sheet (for wholesale), Portfolio (presentation), Consignment Sheet (for galleries), and Detailed Catalog (full descriptions).',
+        a: 'Grid, Catalog, Line Sheet, Portfolio, Consignment Sheet, and Detailed Catalog.',
       },
       {
         q: 'How do I create a PDF?',
-        a: 'Go to Export, select the artwork you want to include, choose a template, customize options like logo and page size, then tap "Generate PDF". The PDF will open for you to save or share.',
+        a: 'Go to Export, select artwork, choose a template, customize options, then tap "Generate PDF".',
       },
       {
         q: 'Can I add my logo to PDFs?',
-        a: 'Yes. In your Profile settings, upload a logo. Then when exporting, enable "Include Logo" and choose the size (small, medium, or large).',
+        a: 'Yes. Upload a logo in Profile settings, then enable "Include Logo" when exporting.',
       },
       {
         q: 'What\'s the difference between Line Sheet and Catalog?',
-        a: 'Line Sheet is designed for wholesale buyers—it shows multiple pieces per page with SKU, dimensions, and pricing in a compact format. Catalog shows one artwork per page with full details, better for collectors or exhibitions.',
-      },
-      {
-        q: 'Can I include pricing on PDFs?',
-        a: 'Yes. Each template has options to show or hide pricing. Line sheets can show both wholesale and retail prices.',
+        a: 'Line Sheet shows multiple pieces per page with pricing—ideal for wholesale. Catalog shows one per page with full details.',
       },
     ],
   },
@@ -78,19 +74,15 @@ const sections = [
     questions: [
       {
         q: 'What is a portfolio page?',
-        a: 'Your portfolio page is a webpage at piecerie.com/yourname where visitors can view your artwork, bio, and contact info without needing the app.',
+        a: 'A public webpage at piecerie.com/yourname where visitors can view your artwork and contact info.',
       },
       {
-        q: 'How do I set up my portfolio page?',
-        a: 'Go to Profile settings. Fill in your display name, bio, and contact info. Set a unique URL slug (like "jane-smith"). Toggle "Public Profile" on. Only collections marked as public will appear.',
+        q: 'How do I set up my portfolio?',
+        a: 'Go to Profile settings, fill in your details, set a URL slug, and toggle "Public Profile" on.',
       },
       {
         q: 'How do I control what\'s visible?',
-        a: 'Only collections marked as "Public" appear on your portfolio. In Collections, toggle the "Public" switch for each collection you want to share.',
-      },
-      {
-        q: 'Can I share my portfolio?',
-        a: 'Yes! Your portfolio URL (piecerie.com/yourname) can be shared anywhere—on business cards, social media, email signatures, etc.',
+        a: 'Only collections marked as "Public" appear on your portfolio.',
       },
     ],
   },
@@ -98,16 +90,12 @@ const sections = [
     category: 'Selling Artwork',
     questions: [
       {
-        q: 'Can I sell artwork through Piecerie?',
-        a: 'Piecerie connects to Shopify so you can list artwork directly to your Shopify store. Etsy integration is coming soon.',
+        q: 'Can I sell through Piecerie?',
+        a: 'Piecerie connects to Shopify. Etsy integration is coming soon.',
       },
       {
         q: 'How do I connect Shopify?',
-        a: 'Go to Sell, enter your Shopify store name, and authorize the connection. Once connected, you can list any artwork to Shopify from its detail page.',
-      },
-      {
-        q: 'What gets sent to Shopify?',
-        a: 'When you list artwork, Piecerie sends the image, title, description, and price to create a product in your Shopify store. You can then edit it further in Shopify.',
+        a: 'Go to Sell, enter your store name, and authorize. Then list artwork from its detail page.',
       },
     ],
   },
@@ -116,73 +104,66 @@ const sections = [
     questions: [
       {
         q: 'Can I import from Instagram?',
-        a: 'Yes. Go to Instagram in the app, connect your account, and select photos to import. The caption becomes the description.',
+        a: 'Yes. Connect your account and select photos to import. Captions become descriptions.',
       },
       {
         q: 'Will it import duplicates?',
-        a: 'No. Piecerie tracks which Instagram photos you\'ve already imported and won\'t let you import them again.',
+        a: 'No. Piecerie tracks what you\'ve imported.',
       },
     ],
   },
   {
-    category: 'Account & Settings',
+    category: 'Account',
     questions: [
       {
-        q: 'How do I change my profile info?',
-        a: 'Go to Profile in the navigation. You can update your display name, bio, logo, contact email, phone, website, and Instagram handle.',
-      },
-      {
-        q: 'Can I use Piecerie on multiple devices?',
-        a: 'Yes. Sign in with the same account and all your artwork syncs automatically.',
-      },
-      {
-        q: 'I didn\'t get my confirmation email',
-        a: 'Check your spam folder. If it\'s not there, go back to the login screen and tap "Sign Up" again with the same email—we\'ll resend the confirmation.',
+        q: 'Can I use multiple devices?',
+        a: 'Yes. Sign in with the same account and everything syncs.',
       },
       {
         q: 'How do I reset my password?',
-        a: 'On the login screen, tap "Forgot Password" and enter your email. We\'ll send you a link to reset it.',
+        a: 'Tap "Forgot Password" on the login screen.',
       },
       {
         q: 'How do I delete my account?',
-        a: 'Contact us at support@piecerie.com to request account deletion. This will permanently remove all your data.',
+        a: 'Contact support@piecerie.com to request deletion.',
       },
     ],
   },
 ]
 
-export default function HowToUsePage() {
+export default function ResourcesPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#faf9f7] text-[#1a1a1a]">
       {/* Header */}
-      <header className="border-b">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/">
-            <img src="/logo.png" alt="Piecerie" className="h-8" />
+      <header className="border-b border-[#1a1a1a]/10">
+        <div className="max-w-6xl mx-auto px-8 py-6 flex items-center justify-between">
+          <Link href="/" className="text-2xl italic">
+            Piecerie
           </Link>
-          <nav className="flex gap-6 text-sm">
-            <Link href="/resources" className="text-black font-medium">Resources</Link>
-            <Link href="/pricing" className="text-gray-600 hover:text-black">Pricing</Link>
+          <nav className="flex gap-10 text-sm tracking-wide">
+            <Link href="/resources" className="text-[#9a3412]">Resources</Link>
+            <Link href="/pricing" className="hover:text-[#9a3412]">Pricing</Link>
           </nav>
         </div>
       </header>
 
       {/* Content */}
-      <main className="max-w-3xl mx-auto px-4 py-16">
-        <h1 className="text-4xl font-bold mb-4">Resources</h1>
-        <p className="text-xl text-gray-600 mb-12">
-          Everything you need to know to get started and make the most of Piecerie.
+      <main className="max-w-4xl mx-auto px-8 py-20">
+        <p className="text-sm tracking-[0.3em] uppercase text-[#9a3412] mb-4">Resources</p>
+        <h1 className="text-5xl md:text-6xl italic font-normal mb-6">How to use Piecerie</h1>
+        <p className="text-lg text-[#1a1a1a]/60 mb-16 max-w-xl">
+          Everything you need to know to get started and make the most of your account.
         </p>
 
         {/* Table of Contents */}
-        <div className="bg-gray-50 rounded-lg p-6 mb-12">
-          <h2 className="font-semibold mb-4">Jump to:</h2>
-          <div className="flex flex-wrap gap-2">
+        <div className="border border-[#1a1a1a]/10 p-8 mb-20 bg-white">
+          <p className="text-sm tracking-[0.2em] uppercase text-[#1a1a1a]/40 mb-4">Contents</p>
+          <div className="flex flex-wrap gap-x-8 gap-y-3">
             {sections.map((section) => (
               <a
                 key={section.category}
                 href={`#${section.category.toLowerCase().replace(/\s+/g, '-')}`}
-                className="px-3 py-1 bg-white border rounded-full text-sm hover:border-black transition-colors"
+                className="text-[15px] hover:text-[#9a3412]"
               >
                 {section.category}
               </a>
@@ -191,17 +172,17 @@ export default function HowToUsePage() {
         </div>
 
         {/* Sections */}
-        <div className="space-y-16">
+        <div className="space-y-20">
           {sections.map((section) => (
             <div key={section.category} id={section.category.toLowerCase().replace(/\s+/g, '-')}>
-              <h2 className="text-2xl font-semibold mb-6 pb-2 border-b">
+              <h2 className="text-2xl italic mb-8 pb-4 border-b border-[#1a1a1a]/10">
                 {section.category}
               </h2>
-              <div className="space-y-6">
+              <div className="grid gap-8">
                 {section.questions.map((item, index) => (
                   <div key={index}>
-                    <h3 className="font-medium text-lg mb-2">{item.q}</h3>
-                    <p className="text-gray-600 whitespace-pre-line">{item.a}</p>
+                    <h3 className="font-normal mb-2">{item.q}</h3>
+                    <p className="text-[#1a1a1a]/60 text-[15px] whitespace-pre-line leading-relaxed">{item.a}</p>
                   </div>
                 ))}
               </div>
@@ -210,14 +191,14 @@ export default function HowToUsePage() {
         </div>
 
         {/* Still need help */}
-        <div className="mt-16 p-8 bg-gray-50 rounded-lg text-center">
-          <h2 className="text-xl font-semibold mb-2">Still have questions?</h2>
-          <p className="text-gray-600 mb-4">
+        <div className="mt-24 border border-[#1a1a1a]/10 p-12 text-center bg-white">
+          <h2 className="text-2xl italic mb-4">Still have questions?</h2>
+          <p className="text-[#1a1a1a]/60 mb-8">
             We're here to help.
           </p>
           <a
             href="mailto:support@piecerie.com"
-            className="inline-block bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800"
+            className="inline-block bg-[#1a1a1a] text-[#faf9f7] px-8 py-4 text-sm tracking-wide hover:bg-[#9a3412]"
           >
             Contact Support
           </a>
@@ -225,9 +206,9 @@ export default function HowToUsePage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t mt-16">
-        <div className="max-w-4xl mx-auto px-4 py-6 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} Piecerie. All rights reserved.
+      <footer className="border-t border-[#1a1a1a]/10 mt-20">
+        <div className="max-w-6xl mx-auto px-8 py-8 text-center text-sm text-[#1a1a1a]/50 italic">
+          &copy; {new Date().getFullYear()} Piecerie
         </div>
       </footer>
     </div>
