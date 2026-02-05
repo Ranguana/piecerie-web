@@ -1,14 +1,18 @@
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Help & Tutorials - Piecerie',
+  title: 'How to Use - Piecerie',
   description: 'Learn how to use Piecerie to manage your artwork, create PDFs, and more.',
 }
 
-const faqs = [
+const sections = [
   {
     category: 'Getting Started',
     questions: [
+      {
+        q: 'How do I sign up?',
+        a: '1. Download Piecerie from the App Store\n2. Tap "Sign Up" and enter your email\n3. Create a password (at least 6 characters)\n4. Check your email and tap the confirmation link\n5. You\'re in! Start adding your artwork.',
+      },
       {
         q: 'What is Piecerie?',
         a: 'Piecerie is an app for artists to catalog their artwork and create professional documents like line sheets, catalogs, and portfolios. Take photos of your work, add details, and generate beautiful PDFs in seconds.',
@@ -70,23 +74,23 @@ const faqs = [
     ],
   },
   {
-    category: 'Public Profile',
+    category: 'Portfolio Page',
     questions: [
       {
-        q: 'What is a public profile?',
-        a: 'Your public profile is a webpage at piecerie.com/yourname where visitors can view your artwork, bio, and contact info without needing the app.',
+        q: 'What is a portfolio page?',
+        a: 'Your portfolio page is a webpage at piecerie.com/yourname where visitors can view your artwork, bio, and contact info without needing the app.',
       },
       {
-        q: 'How do I set up my public profile?',
+        q: 'How do I set up my portfolio page?',
         a: 'Go to Profile settings. Fill in your display name, bio, and contact info. Set a unique URL slug (like "jane-smith"). Toggle "Public Profile" on. Only collections marked as public will appear.',
       },
       {
         q: 'How do I control what\'s visible?',
-        a: 'Only collections marked as "Public" appear on your profile. In Collections, toggle the "Public" switch for each collection you want to share.',
+        a: 'Only collections marked as "Public" appear on your portfolio. In Collections, toggle the "Public" switch for each collection you want to share.',
       },
       {
-        q: 'Can I share my profile?',
-        a: 'Yes! Your profile URL (piecerie.com/yourname) can be shared anywhere—on business cards, social media, email signatures, etc.',
+        q: 'Can I share my portfolio?',
+        a: 'Yes! Your portfolio URL (piecerie.com/yourname) can be shared anywhere—on business cards, social media, email signatures, etc.',
       },
     ],
   },
@@ -132,14 +136,22 @@ const faqs = [
         a: 'Yes. Sign in with the same account and all your artwork syncs automatically.',
       },
       {
+        q: 'I didn\'t get my confirmation email',
+        a: 'Check your spam folder. If it\'s not there, go back to the login screen and tap "Sign Up" again with the same email—we\'ll resend the confirmation.',
+      },
+      {
+        q: 'How do I reset my password?',
+        a: 'On the login screen, tap "Forgot Password" and enter your email. We\'ll send you a link to reset it.',
+      },
+      {
         q: 'How do I delete my account?',
-        a: 'Contact us at hello@piecerie.com to request account deletion. This will permanently remove all your data.',
+        a: 'Contact us at support@piecerie.com to request account deletion. This will permanently remove all your data.',
       },
     ],
   },
 ]
 
-export default function HelpPage() {
+export default function HowToUsePage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -150,7 +162,7 @@ export default function HelpPage() {
           </Link>
           <nav className="flex gap-6 text-sm">
             <Link href="/about" className="text-gray-600 hover:text-black">About</Link>
-            <Link href="/help" className="text-black font-medium">Help</Link>
+            <Link href="/how-to-use" className="text-black font-medium">How to Use</Link>
             <Link href="/pricing" className="text-gray-600 hover:text-black">Pricing</Link>
           </nav>
         </div>
@@ -158,16 +170,16 @@ export default function HelpPage() {
 
       {/* Content */}
       <main className="max-w-3xl mx-auto px-4 py-16">
-        <h1 className="text-4xl font-bold mb-4">Help & Tutorials</h1>
+        <h1 className="text-4xl font-bold mb-4">How to Use Piecerie</h1>
         <p className="text-xl text-gray-600 mb-12">
-          Everything you need to know about using Piecerie.
+          Everything you need to know to get started and make the most of Piecerie.
         </p>
 
         {/* Table of Contents */}
         <div className="bg-gray-50 rounded-lg p-6 mb-12">
           <h2 className="font-semibold mb-4">Jump to:</h2>
           <div className="flex flex-wrap gap-2">
-            {faqs.map((section) => (
+            {sections.map((section) => (
               <a
                 key={section.category}
                 href={`#${section.category.toLowerCase().replace(/\s+/g, '-')}`}
@@ -179,9 +191,9 @@ export default function HelpPage() {
           </div>
         </div>
 
-        {/* FAQ Sections */}
+        {/* Sections */}
         <div className="space-y-16">
-          {faqs.map((section) => (
+          {sections.map((section) => (
             <div key={section.category} id={section.category.toLowerCase().replace(/\s+/g, '-')}>
               <h2 className="text-2xl font-semibold mb-6 pb-2 border-b">
                 {section.category}
@@ -190,7 +202,7 @@ export default function HelpPage() {
                 {section.questions.map((item, index) => (
                   <div key={index}>
                     <h3 className="font-medium text-lg mb-2">{item.q}</h3>
-                    <p className="text-gray-600">{item.a}</p>
+                    <p className="text-gray-600 whitespace-pre-line">{item.a}</p>
                   </div>
                 ))}
               </div>
@@ -205,7 +217,7 @@ export default function HelpPage() {
             We're here to help.
           </p>
           <a
-            href="mailto:hello@piecerie.com"
+            href="mailto:support@piecerie.com"
             className="inline-block bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800"
           >
             Contact Support

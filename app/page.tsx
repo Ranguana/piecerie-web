@@ -11,7 +11,7 @@ export default function Home() {
           </Link>
           <nav className="flex gap-6 text-sm">
             <Link href="/about" className="text-gray-600 hover:text-black">About</Link>
-            <Link href="/help" className="text-gray-600 hover:text-black">Help</Link>
+            <Link href="/how-to-use" className="text-gray-600 hover:text-black">How to Use</Link>
             <Link href="/pricing" className="text-gray-600 hover:text-black">Pricing</Link>
           </nav>
         </div>
@@ -45,9 +45,9 @@ export default function Home() {
           <div>© {new Date().getFullYear()} Piecerie. All rights reserved.</div>
           <div className="flex gap-6">
             <Link href="/about" className="hover:text-black">About</Link>
-            <Link href="/help" className="hover:text-black">Help</Link>
+            <Link href="/how-to-use" className="hover:text-black">How to Use</Link>
             <Link href="/pricing" className="hover:text-black">Pricing</Link>
-            <a href="mailto:hello@piecerie.com" className="hover:text-black">Contact</a>
+            <a href="mailto:support@piecerie.com" className="hover:text-black">Contact</a>
           </div>
         </div>
       </footer>

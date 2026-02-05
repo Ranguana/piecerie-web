@@ -16,7 +16,7 @@ export default function PricingPage() {
           </Link>
           <nav className="flex gap-6 text-sm">
             <Link href="/about" className="text-gray-600 hover:text-black">About</Link>
-            <Link href="/help" className="text-gray-600 hover:text-black">Help</Link>
+            <Link href="/how-to-use" className="text-gray-600 hover:text-black">How to Use</Link>
             <Link href="/pricing" className="text-black font-medium">Pricing</Link>
           </nav>
         </div>
@@ -58,6 +58,12 @@ export default function PricingPage() {
                 <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
+                <span>Import from Instagram</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
                 <span>Basic PDF templates</span>
               </li>
               <li className="flex items-start gap-2">
@@ -71,24 +77,6 @@ export default function PricingPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <span>1 store integration (Etsy or Shopify)</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                <span>Piecerie watermark on PDFs</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                <span>Piecerie branding on portfolio</span>
-              </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                <span>No QR code generation</span>
               </li>
             </ul>
             <Link
@@ -109,6 +97,7 @@ export default function PricingPage() {
             <div className="mb-6">
               <span className="text-4xl font-bold">$9.99</span>
               <span className="text-gray-500">/month</span>
+              <div className="text-sm text-gray-500 mt-1">or $99/year (save 17%)</div>
             </div>
             <ul className="space-y-3 mb-8">
               <li className="flex items-start gap-2">
@@ -193,7 +182,7 @@ export default function PricingPage() {
             </div>
             <div>
               <h3 className="font-medium mb-2">Is there an annual plan?</h3>
-              <p className="text-gray-600">Coming soon! We'll offer a discounted annual option.</p>
+              <p className="text-gray-600">Yes! Pay $99/year and save 17% compared to monthly billing.</p>
             </div>
           </div>
         </div>
