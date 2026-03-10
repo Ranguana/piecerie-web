@@ -31,7 +31,7 @@ export default function Home() {
               <span className="text-[#e85a4f]">Start showing your work.</span>
             </h1>
             <p className="text-lg text-[#1a1a1a]/60 leading-relaxed mb-10 max-w-md">
-              Easily import and catalog your artwork. Generate professional line sheets, portfolios, and catalogs in seconds.
+              Inventory your work, generate line sheets, portfolios, and catalogs — and get back to the studio. All of it in minutes.
             </p>
             <div className="flex gap-4">
               <Link

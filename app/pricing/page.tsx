@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export const metadata = {
   title: 'Pricing - Piecerie',
-  description: 'Simple, affordable pricing for artists. Start free, upgrade when you need more.',
+  description: 'Simple, affordable pricing for artists. Your art, handled.',
 }
 
 export default function PricingPage() {
@@ -30,7 +30,7 @@ export default function PricingPage() {
       <main className="max-w-6xl mx-auto px-8 py-20">
         <div className="text-center mb-20">
           <p className="text-sm tracking-[0.3em] uppercase text-[#2d7d6e] mb-4">Pricing</p>
-          <h1 className="text-3xl md:text-4xl italic font-normal">Start free. Upgrade when you need more.</h1>
+          <h1 className="text-3xl md:text-4xl font-normal">Your <span className="text-[#e85a4f]">art</span>, <em className="text-[#2d7d6e]">handled</em>.</h1>
         </div>
 
         {/* Pricing Cards */}
@@ -38,8 +38,8 @@ export default function PricingPage() {
           {/* Free Tier */}
           <div className="border border-[#1a1a1a]/10 p-10 bg-white">
             <p className="text-sm tracking-[0.2em] uppercase text-[#1a1a1a]/40 mb-2">Free</p>
-            <h2 className="text-3xl italic mb-2">Get Started</h2>
-            <p className="text-[#1a1a1a]/60 mb-8">A taste of the studio</p>
+            <h2 className="text-3xl italic mb-2">Dip your toes in</h2>
+            <p className="text-[#1a1a1a]/60 mb-8"></p>
             <div className="mb-10">
               <span className="text-5xl font-light">$0</span>
               <span className="text-[#1a1a1a]/40 ml-2">/month</span>

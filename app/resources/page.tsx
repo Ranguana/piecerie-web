@@ -123,10 +123,6 @@ const sections = [
         q: 'How do I reset my password?',
         a: 'Tap "Forgot Password" on the login screen.',
       },
-      {
-        q: 'How do I delete my account?',
-        a: 'Contact support@piecerie.com to request deletion.',
-      },
     ],
   },
 ]

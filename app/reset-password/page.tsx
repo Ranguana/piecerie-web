@@ -2,12 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { createClient } from '@supabase/supabase-js'
-
-const supabase = createClient(
-  'https://dkgyowbgueylstwgmmfd.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRrZ3lvd2JndWV5bHN0d2dtbWZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk2NDMwNzIsImV4cCI6MjA4NTIxOTA3Mn0.6qEpr3-NoIBECObJl7ykwChJ8Y4xBd5Rp0_9B8mYVY8'
-)
+import { supabase } from '@/lib/supabase'
 
 export default function ResetPasswordPage() {
   const [password, setPassword] = useState('')

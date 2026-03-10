@@ -1,6 +1,6 @@
-# Piecerie Web - Public Artist Profiles
+# Piecerie Web - Marketing Site & Public Profiles
 
-Public-facing website for artist profile pages at `piecerie.com/p/[artist-slug]`.
+Public-facing marketing website and artist profile pages at `piecerie.com`.
 
 ## Setup
 
@@ -11,11 +11,7 @@ Public-facing website for artist profile pages at `piecerie.com/p/[artist-slug]`
 
 ## Deployment
 
-Deploy to Vercel:
-
-```bash
-vercel
-```
+Deployed on **Vercel**. Pushes to `main` auto-deploy.
 
 Set environment variables in Vercel dashboard:
 - `NEXT_PUBLIC_SUPABASE_URL`
@@ -26,18 +22,20 @@ Set environment variables in Vercel dashboard:
 - Artists set up their profile in the main Piecerie iOS app
 - They choose a slug (e.g., "jane-doe-art")
 - They toggle `is_public` on their profile and individual artworks
-- Their public page is visible at `piecerie.com/p/jane-doe-art`
+- Their public page is visible at `piecerie.com/jane-doe-art`
 
 ## Structure
 
 ```
 app/
-  page.tsx          # Landing page
-  not-found.tsx     # 404 page
-  p/[slug]/
-    page.tsx        # Dynamic artist profile page
+  page.tsx              # Landing page
+  not-found.tsx         # 404 page
+  pricing/page.tsx      # Pricing page
+  resources/page.tsx    # Help/FAQ page
+  reset-password/page.tsx  # Password reset (linked from email)
+  [slug]/page.tsx       # Dynamic artist profile page
 lib/
-  supabase.ts       # Supabase client
+  supabase.ts           # Supabase client
 types/
-  index.ts          # TypeScript types
+  index.ts              # TypeScript types
 ```
