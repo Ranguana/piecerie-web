@@ -14,14 +14,18 @@ export default function PricingPage() {
           <Link
             href="/"
             className="text-xl font-bold tracking-tight uppercase"
-            style={{ fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+            style={{ fontFamily: 'var(--font-archivo), system-ui, sans-serif' }}
           >
-            <span className="text-[#5a6350]">P</span>
-            <span className="text-[var(--foreground)]">iecerie</span>
+            <span className="text-[#e85a4f]">P</span>
+            <span className="text-[#2d2d2d]">ie</span>
+            <span className="text-[#d9a441]">c</span>
+            <span className="text-[#2d2d2d]">e</span>
+            <span className="text-[#2d7d6e]">r</span>
+            <span className="text-[#2d2d2d]">ie</span>
           </Link>
           <nav className="flex gap-8 items-center">
             <Link href="/resources" className="text-[11px] uppercase tracking-[0.15em] text-[var(--muted)] hover:text-[var(--foreground)]">Resources</Link>
-            <Link href="/pricing" className="text-[11px] uppercase tracking-[0.15em] text-[#5a6350] border-b border-[#5a6350] pb-0.5">Pricing</Link>
+            <Link href="/pricing" className="text-[11px] uppercase tracking-[0.15em] text-[#6b7f5b] border-b border-[#5a6350] pb-0.5">Pricing</Link>
           </nav>
         </div>
       </header>
@@ -29,9 +33,9 @@ export default function PricingPage() {
       {/* Content */}
       <main className="max-w-6xl mx-auto px-8 py-20">
         <div className="text-center mb-20">
-          <p className="text-[11px] tracking-[0.2em] uppercase text-[#5a6350] mb-4">Pricing</p>
+          <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-4">Pricing</p>
           <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
-            Your art, <span className="text-[#5a6350]">h</span>andled.
+            Your art, <span className="text-[#6b7f5b]">h</span>andled.
           </h1>
         </div>
 
@@ -56,7 +60,7 @@ export default function PricingPage() {
                 'Portfolio page',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span className="text-[#5a6350] mt-0.5">-</span>
+                  <span className="text-[#6b7f5b] mt-0.5">-</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -71,7 +75,7 @@ export default function PricingPage() {
 
           {/* Pro Tier */}
           <div className="border-2 border-[var(--accent)] p-10 rounded-xl bg-white relative">
-            <div className="absolute -top-3 left-8 bg-[#5a6350] text-white text-[10px] tracking-wider uppercase px-3 py-1 rounded-full">
+            <div className="absolute -top-3 left-8 bg-[#6b7f5b] text-white text-[10px] tracking-wider uppercase px-3 py-1 rounded-full">
               Recommended
             </div>
             <p className="text-[11px] tracking-[0.2em] uppercase text-[var(--muted)] mb-2">Pro</p>
@@ -95,7 +99,7 @@ export default function PricingPage() {
                 'Priority support',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span className="text-[#5a6350] mt-0.5">-</span>
+                  <span className="text-[#6b7f5b] mt-0.5">-</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -111,7 +115,7 @@ export default function PricingPage() {
 
         {/* FAQ */}
         <div className="mt-28 max-w-2xl mx-auto">
-          <p className="text-[11px] tracking-[0.2em] uppercase text-[#5a6350] mb-4 text-center">FAQ</p>
+          <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-4 text-center">FAQ</p>
           <h2 className="text-2xl font-semibold tracking-tight text-center mb-12">Common questions</h2>
           <div className="space-y-8">
             {[

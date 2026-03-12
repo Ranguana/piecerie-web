@@ -82,14 +82,14 @@ export default function ResetPasswordPage() {
             <span className="text-[#2d2d2d]">ie</span>
             <span className="text-[#d9a441]">c</span>
             <span className="text-[#2d2d2d]">e</span>
-            <span className="text-[#2d7d6e]">r</span>
+            <span className="text-[var(--accent)]">r</span>
             <span className="text-[#2d2d2d]">ie</span>
           </Link>
           <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6">
             <p>Invalid or missing reset token.</p>
             <p className="text-sm mt-2">Please request a new password reset link.</p>
           </div>
-          <Link href="/" className="text-[#2d7d6e] hover:underline">
+          <Link href="/" className="text-[var(--accent)] hover:underline">
             Back to home
           </Link>
         </div>
@@ -106,7 +106,7 @@ export default function ResetPasswordPage() {
             <span className="text-[#2d2d2d]">ie</span>
             <span className="text-[#d9a441]">c</span>
             <span className="text-[#2d2d2d]">e</span>
-            <span className="text-[#2d7d6e]">r</span>
+            <span className="text-[var(--accent)]">r</span>
             <span className="text-[#2d2d2d]">ie</span>
           </Link>
           <div className="bg-green-50 text-green-700 p-6 rounded-lg mb-6">
@@ -118,7 +118,7 @@ export default function ResetPasswordPage() {
           </div>
           <a
             href="https://apps.apple.com/app/piecerie"
-            className="inline-block px-6 py-3 bg-[#1a1a1a] text-white rounded-lg hover:bg-[#2d7d6e]"
+            className="inline-block px-6 py-3 bg-[#1a1a1a] text-white rounded-lg hover:bg-[var(--accent)]"
           >
             Open App
           </a>
@@ -136,7 +136,7 @@ export default function ResetPasswordPage() {
             <span className="text-[#2d2d2d]">ie</span>
             <span className="text-[#d9a441]">c</span>
             <span className="text-[#2d2d2d]">e</span>
-            <span className="text-[#2d7d6e]">r</span>
+            <span className="text-[var(--accent)]">r</span>
             <span className="text-[#2d2d2d]">ie</span>
           </Link>
           <h1 className="mt-6 text-2xl italic">Set new password</h1>
@@ -161,7 +161,7 @@ export default function ResetPasswordPage() {
                 placeholder="New password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 border border-[#1a1a1a]/20 rounded-lg focus:ring-2 focus:ring-[#2d7d6e] focus:outline-none focus:border-transparent bg-white pr-12"
+                className="w-full px-4 py-3 border border-[#1a1a1a]/20 rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:outline-none focus:border-transparent bg-white pr-12"
                 required
               />
               <button
@@ -187,14 +187,14 @@ export default function ResetPasswordPage() {
               placeholder="Confirm new password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full px-4 py-3 border border-[#1a1a1a]/20 rounded-lg focus:ring-2 focus:ring-[#2d7d6e] focus:outline-none focus:border-transparent bg-white"
+              className="w-full px-4 py-3 border border-[#1a1a1a]/20 rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:outline-none focus:border-transparent bg-white"
               required
             />
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-[#1a1a1a] text-[#faf9f7] rounded-lg font-medium hover:bg-[#2d7d6e] disabled:opacity-50 transition-colors"
+              className="w-full py-3 bg-[#1a1a1a] text-[#faf9f7] rounded-lg font-medium hover:bg-[var(--accent)] disabled:opacity-50 transition-colors"
             >
               {loading ? 'Updating...' : 'Update Password'}
             </button>
@@ -202,7 +202,7 @@ export default function ResetPasswordPage() {
         )}
 
         <p className="text-center mt-6">
-          <Link href="/" className="text-[#1a1a1a]/60 hover:text-[#2d7d6e]">
+          <Link href="/" className="text-[#1a1a1a]/60 hover:text-[var(--accent)]">
             Back to home
           </Link>
         </p>

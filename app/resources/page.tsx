@@ -161,13 +161,17 @@ export default function ResourcesPage() {
           <Link
             href="/"
             className="text-xl font-bold tracking-tight uppercase"
-            style={{ fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+            style={{ fontFamily: 'var(--font-archivo), system-ui, sans-serif' }}
           >
-            <span className="text-[#5a6350]">P</span>
-            <span className="text-[var(--foreground)]">iecerie</span>
+            <span className="text-[#e85a4f]">P</span>
+            <span className="text-[#2d2d2d]">ie</span>
+            <span className="text-[#d9a441]">c</span>
+            <span className="text-[#2d2d2d]">e</span>
+            <span className="text-[#2d7d6e]">r</span>
+            <span className="text-[#2d2d2d]">ie</span>
           </Link>
           <nav className="flex gap-8 items-center">
-            <Link href="/resources" className="text-[11px] uppercase tracking-[0.15em] text-[#5a6350] border-b border-[#5a6350] pb-0.5">Resources</Link>
+            <Link href="/resources" className="text-[11px] uppercase tracking-[0.15em] text-[#6b7f5b] border-b border-[#5a6350] pb-0.5">Resources</Link>
             <Link href="/pricing" className="text-[11px] uppercase tracking-[0.15em] text-[var(--muted)] hover:text-[var(--foreground)]">Pricing</Link>
           </nav>
         </div>
@@ -175,9 +179,9 @@ export default function ResourcesPage() {
 
       {/* Content */}
       <main className="max-w-4xl mx-auto px-8 py-20">
-        <p className="text-[11px] tracking-[0.2em] uppercase text-[#5a6350] mb-4">Resources</p>
+        <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-4">Resources</p>
         <h1 className="text-3xl md:text-5xl font-semibold tracking-tight mb-4">
-          How to use <span className="text-[#5a6350]">P</span>iecerie
+          How to use <span className="text-[#6b7f5b]">P</span>iecerie
         </h1>
         <p className="text-base text-[var(--muted)] mb-16 max-w-xl">
           Everything you need to know to get started and make the most of your account.
@@ -191,7 +195,7 @@ export default function ResourcesPage() {
               <a
                 key={section.category}
                 href={`#${section.category.toLowerCase().replace(/\s+/g, '-')}`}
-                className="text-sm hover:text-[#5a6350]"
+                className="text-sm hover:text-[#6b7f5b]"
               >
                 {section.category}
               </a>

@@ -9,10 +9,14 @@ export default function Home() {
           <Link
             href="/"
             className="text-xl font-bold tracking-tight uppercase"
-            style={{ fontFamily: 'var(--font-space-grotesk), system-ui, sans-serif' }}
+            style={{ fontFamily: 'var(--font-archivo), system-ui, sans-serif' }}
           >
-            <span className="text-[#5a6350]">P</span>
-            <span className="text-[var(--foreground)]">iecerie</span>
+            <span className="text-[#e85a4f]">P</span>
+            <span className="text-[#2d2d2d]">ie</span>
+            <span className="text-[#d9a441]">c</span>
+            <span className="text-[#2d2d2d]">e</span>
+            <span className="text-[#2d7d6e]">r</span>
+            <span className="text-[#2d2d2d]">ie</span>
           </Link>
           <nav className="flex gap-8 items-center">
             <Link href="/resources" className="text-[11px] uppercase tracking-[0.15em] text-[var(--muted)] hover:text-[var(--foreground)]">Resources</Link>
@@ -25,7 +29,7 @@ export default function Home() {
         {/* Hero */}
         <section className="max-w-6xl mx-auto px-8 py-20 md:py-28 grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="text-[11px] tracking-[0.2em] uppercase text-[#5a6350] mb-4">For Artists</p>
+            <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-4">For Artists</p>
             <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight mb-6">
               Stop managing inventory.
               <br />
@@ -62,9 +66,9 @@ export default function Home() {
             <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
               {/* Templates */}
               <div>
-                <p className="text-[11px] tracking-[0.2em] uppercase text-[#5a6350] mb-4">Templates</p>
+                <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-4">Templates</p>
                 <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4">
-                  Professional PDFs in <span className="text-[#5a6350]">s</span>econds
+                  Professional PDFs in <span className="text-[#6b7f5b]">s</span>econds
                 </h2>
                 <p className="text-base text-[var(--muted)] mb-12">
                   Choose from six templates designed for galleries, collectors, and wholesale buyers.
@@ -95,9 +99,9 @@ export default function Home() {
 
               {/* Import & Integrations */}
               <div>
-                <p className="text-[11px] tracking-[0.2em] uppercase text-[#5a6350] mb-4">Import</p>
+                <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-4">Import</p>
                 <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4">
-                  Your art, your way <span className="text-[#5a6350]">i</span>n
+                  Your art, your way <span className="text-[#6b7f5b]">i</span>n
                 </h2>
                 <p className="text-base text-[var(--muted)] mb-12">
                   Upload photos, import from Instagram, connect Shopify, or bulk import from a spreadsheet.
