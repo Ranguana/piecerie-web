@@ -163,16 +163,16 @@ export default function ResourcesPage() {
             className="text-xl font-bold tracking-tight uppercase"
             style={{ fontFamily: 'var(--font-archivo), system-ui, sans-serif' }}
           >
-            <span className="text-[#e85a4f]">P</span>
+            <span className="text-[#6b7f5b]">P</span>
             <span className="text-[#2d2d2d]">ie</span>
-            <span className="text-[#d9a441]">c</span>
+            <span className="text-[#6b7f5b]">c</span>
             <span className="text-[#2d2d2d]">e</span>
             <span className="text-[#6b7f5b]">r</span>
             <span className="text-[#2d2d2d]">ie</span>
           </Link>
           <nav className="flex gap-8 items-center">
             <Link href="/resources" className="text-[11px] uppercase tracking-[0.15em] text-[#6b7f5b] border-b border-[#5a6350] pb-0.5">Resources</Link>
-            <Link href="/pricing" className="text-[11px] uppercase tracking-[0.15em] text-[var(--muted)] hover:text-[var(--foreground)]">Pricing</Link>
+            <Link href="/pricing" className="text-[11px] uppercase tracking-[0.15em] text-[#6b7f5b] hover:text-[var(--foreground)]">Pricing</Link>
           </nav>
         </div>
       </header>
@@ -183,13 +183,13 @@ export default function ResourcesPage() {
         <h1 className="text-3xl md:text-5xl font-semibold tracking-tight mb-4">
           How to use <span className="text-[#6b7f5b]">P</span>iecerie
         </h1>
-        <p className="text-base text-[var(--muted)] mb-16 max-w-xl">
+        <p className="text-base text-[var(--foreground)] mb-16 max-w-xl">
           Everything you need to know to get started and make the most of your account.
         </p>
 
         {/* Table of Contents */}
         <div className="border border-[var(--border)] p-8 mb-20 rounded-xl bg-[var(--surface)]">
-          <p className="text-[11px] tracking-[0.2em] uppercase text-[var(--muted)] mb-4">Contents</p>
+          <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-4">Contents</p>
           <div className="flex flex-wrap gap-x-8 gap-y-3">
             {sections.map((section) => (
               <a
@@ -214,7 +214,7 @@ export default function ResourcesPage() {
                 {section.questions.map((item, index) => (
                   <div key={index}>
                     <h3 className="font-medium mb-2">{item.q}</h3>
-                    <p className="text-[var(--muted)] text-sm whitespace-pre-line leading-relaxed">{item.a}</p>
+                    <p className="text-[var(--foreground)] text-sm whitespace-pre-line leading-relaxed">{item.a}</p>
                   </div>
                 ))}
               </div>
@@ -225,7 +225,7 @@ export default function ResourcesPage() {
         {/* Still need help */}
         <div className="mt-24 border border-[var(--border)] p-12 text-center rounded-xl bg-[var(--surface)]">
           <h2 className="text-2xl font-semibold tracking-tight mb-4">Still have questions?</h2>
-          <p className="text-[var(--muted)] mb-8">
+          <p className="text-[var(--foreground)] mb-8">
             We&apos;re here to help.
           </p>
           <a
@@ -239,12 +239,12 @@ export default function ResourcesPage() {
 
       {/* Footer */}
       <footer className="border-t border-[var(--border)] mt-20">
-        <div className="max-w-6xl mx-auto px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-[var(--muted)]">
+        <div className="max-w-6xl mx-auto px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-[var(--foreground)]">
           <div>&copy; {new Date().getFullYear()} Piecerie</div>
           <div className="flex gap-8">
-            <Link href="/resources" className="hover:text-[var(--foreground)]">Resources</Link>
-            <Link href="/pricing" className="hover:text-[var(--foreground)]">Pricing</Link>
-            <a href="mailto:support@piecerie.com" className="hover:text-[var(--foreground)]">Contact</a>
+            <Link href="/resources" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Resources</Link>
+            <Link href="/pricing" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Pricing</Link>
+            <a href="mailto:support@piecerie.com" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Contact</a>
           </div>
         </div>
       </footer>

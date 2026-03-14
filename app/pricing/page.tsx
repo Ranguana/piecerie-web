@@ -16,15 +16,15 @@ export default function PricingPage() {
             className="text-xl font-bold tracking-tight uppercase"
             style={{ fontFamily: 'var(--font-archivo), system-ui, sans-serif' }}
           >
-            <span className="text-[#e85a4f]">P</span>
+            <span className="text-[#6b7f5b]">P</span>
             <span className="text-[#2d2d2d]">ie</span>
-            <span className="text-[#d9a441]">c</span>
+            <span className="text-[#6b7f5b]">c</span>
             <span className="text-[#2d2d2d]">e</span>
             <span className="text-[#6b7f5b]">r</span>
             <span className="text-[#2d2d2d]">ie</span>
           </Link>
           <nav className="flex gap-8 items-center">
-            <Link href="/resources" className="text-[11px] uppercase tracking-[0.15em] text-[var(--muted)] hover:text-[var(--foreground)]">Resources</Link>
+            <Link href="/resources" className="text-[11px] uppercase tracking-[0.15em] text-[#6b7f5b] hover:text-[var(--foreground)]">Resources</Link>
             <Link href="/pricing" className="text-[11px] uppercase tracking-[0.15em] text-[#6b7f5b] border-b border-[#5a6350] pb-0.5">Pricing</Link>
           </nav>
         </div>
@@ -43,12 +43,12 @@ export default function PricingPage() {
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Free Tier */}
           <div className="border border-[var(--border)] p-10 rounded-xl bg-white">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-[var(--muted)] mb-2">Free</p>
+            <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-2">Free</p>
             <h2 className="text-2xl font-semibold tracking-tight mb-2">Get started</h2>
-            <p className="text-[var(--muted)] text-sm mb-8">Everything you need to begin</p>
+            <p className="text-[var(--foreground)] text-sm mb-8">Everything you need to begin</p>
             <div className="mb-10">
               <span className="text-5xl font-semibold tracking-tight">$0</span>
-              <span className="text-[var(--muted)] ml-2">/month</span>
+              <span className="text-[#6b7f5b] ml-2">/month</span>
             </div>
             <ul className="space-y-4 mb-10 text-sm">
               {[
@@ -78,13 +78,13 @@ export default function PricingPage() {
             <div className="absolute -top-3 left-8 bg-[#6b7f5b] text-white text-[10px] tracking-wider uppercase px-3 py-1 rounded-full">
               Recommended
             </div>
-            <p className="text-[11px] tracking-[0.2em] uppercase text-[var(--muted)] mb-2">Pro</p>
+            <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-2">Pro</p>
             <h2 className="text-2xl font-semibold tracking-tight mb-2">Go professional</h2>
-            <p className="text-[var(--muted)] text-sm mb-8">The full studio</p>
+            <p className="text-[var(--foreground)] text-sm mb-8">The full studio</p>
             <div className="mb-10">
               <span className="text-5xl font-semibold tracking-tight">$9.99</span>
-              <span className="text-[var(--muted)] ml-2">/month</span>
-              <p className="text-xs text-[var(--muted)] mt-1">or $99/year (save 17%)</p>
+              <span className="text-[#6b7f5b] ml-2">/month</span>
+              <p className="text-xs text-[#6b7f5b] mt-1">or $99/year (save 17%)</p>
             </div>
             <ul className="space-y-4 mb-10 text-sm">
               {[
@@ -126,7 +126,7 @@ export default function PricingPage() {
             ].map((faq) => (
               <div key={faq.q} className="border-b border-[var(--border)] pb-6">
                 <h3 className="font-medium mb-2">{faq.q}</h3>
-                <p className="text-[var(--muted)] text-sm">{faq.a}</p>
+                <p className="text-[var(--foreground)] text-sm">{faq.a}</p>
               </div>
             ))}
           </div>
@@ -135,12 +135,12 @@ export default function PricingPage() {
 
       {/* Footer */}
       <footer className="border-t border-[var(--border)] mt-20">
-        <div className="max-w-6xl mx-auto px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-[var(--muted)]">
+        <div className="max-w-6xl mx-auto px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-[var(--foreground)]">
           <div>&copy; {new Date().getFullYear()} Piecerie</div>
           <div className="flex gap-8">
-            <Link href="/resources" className="hover:text-[var(--foreground)]">Resources</Link>
-            <Link href="/pricing" className="hover:text-[var(--foreground)]">Pricing</Link>
-            <a href="mailto:support@piecerie.com" className="hover:text-[var(--foreground)]">Contact</a>
+            <Link href="/resources" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Resources</Link>
+            <Link href="/pricing" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Pricing</Link>
+            <a href="mailto:support@piecerie.com" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Contact</a>
           </div>
         </div>
       </footer>

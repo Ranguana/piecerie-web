@@ -78,9 +78,9 @@ export default function ResetPasswordPage() {
       <div className="min-h-screen bg-[#faf9f7] flex items-center justify-center px-4">
         <div className="max-w-md w-full text-center">
           <Link href="/" className="text-2xl font-bold tracking-tight inline-block mb-8">
-            <span className="text-[#e85a4f]">P</span>
+            <span className="text-[#6b7f5b]">P</span>
             <span className="text-[#2d2d2d]">ie</span>
-            <span className="text-[#d9a441]">c</span>
+            <span className="text-[#6b7f5b]">c</span>
             <span className="text-[#2d2d2d]">e</span>
             <span className="text-[var(--accent)]">r</span>
             <span className="text-[#2d2d2d]">ie</span>
@@ -102,9 +102,9 @@ export default function ResetPasswordPage() {
       <div className="min-h-screen bg-[#faf9f7] flex items-center justify-center px-4">
         <div className="max-w-md w-full text-center">
           <Link href="/" className="text-2xl font-bold tracking-tight inline-block mb-8">
-            <span className="text-[#e85a4f]">P</span>
+            <span className="text-[#6b7f5b]">P</span>
             <span className="text-[#2d2d2d]">ie</span>
-            <span className="text-[#d9a441]">c</span>
+            <span className="text-[#6b7f5b]">c</span>
             <span className="text-[#2d2d2d]">e</span>
             <span className="text-[var(--accent)]">r</span>
             <span className="text-[#2d2d2d]">ie</span>
@@ -132,9 +132,9 @@ export default function ResetPasswordPage() {
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <Link href="/" className="text-2xl font-bold tracking-tight inline-block">
-            <span className="text-[#e85a4f]">P</span>
+            <span className="text-[#6b7f5b]">P</span>
             <span className="text-[#2d2d2d]">ie</span>
-            <span className="text-[#d9a441]">c</span>
+            <span className="text-[#6b7f5b]">c</span>
             <span className="text-[#2d2d2d]">e</span>
             <span className="text-[var(--accent)]">r</span>
             <span className="text-[#2d2d2d]">ie</span>

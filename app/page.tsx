@@ -11,16 +11,16 @@ export default function Home() {
             className="text-xl font-bold tracking-tight uppercase"
             style={{ fontFamily: 'var(--font-archivo), system-ui, sans-serif' }}
           >
-            <span className="text-[#e85a4f]">P</span>
+            <span className="text-[#6b7f5b]">P</span>
             <span className="text-[#2d2d2d]">ie</span>
-            <span className="text-[#d9a441]">c</span>
+            <span className="text-[#6b7f5b]">c</span>
             <span className="text-[#2d2d2d]">e</span>
             <span className="text-[#6b7f5b]">r</span>
             <span className="text-[#2d2d2d]">ie</span>
           </Link>
           <nav className="flex gap-8 items-center">
-            <Link href="/resources" className="text-[11px] uppercase tracking-[0.15em] text-[var(--muted)] hover:text-[var(--foreground)]">Resources</Link>
-            <Link href="/pricing" className="text-[11px] uppercase tracking-[0.15em] text-[var(--muted)] hover:text-[var(--foreground)]">Pricing</Link>
+            <Link href="/resources" className="text-[11px] uppercase tracking-[0.15em] text-[#6b7f5b] hover:text-[var(--foreground)]">Resources</Link>
+            <Link href="/pricing" className="text-[11px] uppercase tracking-[0.15em] text-[#6b7f5b] hover:text-[var(--foreground)]">Pricing</Link>
           </nav>
         </div>
       </header>
@@ -33,9 +33,9 @@ export default function Home() {
             <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight mb-6">
               Stop managing inventory.
               <br />
-              <span className="text-[var(--muted)]"><span className="text-[#e85a4f]">S</span>tart <span className="text-[#d9a441]">s</span>howin<span className="text-[#6b7f5b]">g</span> your work.</span>
+              <span className="text-[#6b7f5b]">Start showing your work.</span>
             </h1>
-            <p className="text-base text-[var(--muted)] leading-relaxed mb-10 max-w-md">
+            <p className="text-base text-[var(--foreground)] leading-relaxed mb-10 max-w-md">
               Inventory your work, generate line sheets, portfolios, and catalogs — and get back to the studio. All of it in minutes.
             </p>
             <div className="flex gap-4">
@@ -47,7 +47,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/resources"
-                className="border border-[var(--border)] px-8 py-3.5 text-sm tracking-wide rounded-lg text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--foreground)]"
+                className="border border-[var(--border)] px-8 py-3.5 text-sm tracking-wide rounded-lg text-[var(--foreground)] hover:border-[var(--accent)]"
               >
                 Learn More
               </Link>
@@ -55,7 +55,7 @@ export default function Home() {
           </div>
           <div className="hidden md:block">
             <div className="aspect-[4/5] bg-[var(--surface)] border border-[var(--border)] rounded-xl flex items-center justify-center">
-              <span className="text-[var(--muted)] text-lg">App Preview</span>
+              <span className="text-[#6b7f5b] text-lg">App Preview</span>
             </div>
           </div>
         </section>
@@ -70,7 +70,7 @@ export default function Home() {
                 <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4">
                   Professional PDFs in <span className="text-[#6b7f5b]">s</span>econds
                 </h2>
-                <p className="text-base text-[var(--muted)] mb-12">
+                <p className="text-base text-[var(--foreground)] mb-12">
                   Choose from six templates designed for galleries, collectors, and wholesale buyers.
                 </p>
 
@@ -103,7 +103,7 @@ export default function Home() {
                 <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4">
                   Your art, your way <span className="text-[#6b7f5b]">i</span>n
                 </h2>
-                <p className="text-base text-[var(--muted)] mb-12">
+                <p className="text-base text-[var(--foreground)] mb-12">
                   Upload photos, import from Instagram, connect Shopify, or bulk import from a spreadsheet.
                 </p>
 
@@ -116,7 +116,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <h3 className="text-sm font-medium mb-1">Instagram</h3>
-                    <p className="text-xs text-[var(--muted)]">Import your posts</p>
+                    <p className="text-xs text-[#6b7f5b]">Import your posts</p>
                   </div>
 
                   {/* Shopify */}
@@ -127,7 +127,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <h3 className="text-sm font-medium mb-1">Shopify</h3>
-                    <p className="text-xs text-[var(--muted)]">Publish to your store</p>
+                    <p className="text-xs text-[#6b7f5b]">Publish to your store</p>
                   </div>
 
                   {/* CSV */}
@@ -138,7 +138,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <h3 className="text-sm font-medium mb-1">CSV Import</h3>
-                    <p className="text-xs text-[var(--muted)]">Bulk import from spreadsheet</p>
+                    <p className="text-xs text-[#6b7f5b]">Bulk import from spreadsheet</p>
                   </div>
 
                   {/* Upload */}
@@ -150,7 +150,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <h3 className="text-sm font-medium mb-1">Camera</h3>
-                    <p className="text-xs text-[var(--muted)]">Photo or library</p>
+                    <p className="text-xs text-[#6b7f5b]">Photo or library</p>
                   </div>
                 </div>
               </div>
@@ -161,12 +161,12 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-[var(--border)]">
-        <div className="max-w-6xl mx-auto px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-[var(--muted)]">
+        <div className="max-w-6xl mx-auto px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-[var(--foreground)]">
           <div>&copy; {new Date().getFullYear()} Piecerie</div>
           <div className="flex gap-8">
-            <Link href="/resources" className="hover:text-[var(--foreground)]">Resources</Link>
-            <Link href="/pricing" className="hover:text-[var(--foreground)]">Pricing</Link>
-            <a href="mailto:support@piecerie.com" className="hover:text-[var(--foreground)]">Contact</a>
+            <Link href="/resources" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Resources</Link>
+            <Link href="/pricing" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Pricing</Link>
+            <a href="mailto:support@piecerie.com" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Contact</a>
           </div>
         </div>
       </footer>
