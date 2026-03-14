@@ -20,7 +20,7 @@ export default function PricingPage() {
             <span className="text-[#2d2d2d]">ie</span>
             <span className="text-[#d9a441]">c</span>
             <span className="text-[#2d2d2d]">e</span>
-            <span className="text-[#2d7d6e]">r</span>
+            <span className="text-[#6b7f5b]">r</span>
             <span className="text-[#2d2d2d]">ie</span>
           </Link>
           <nav className="flex gap-8 items-center">

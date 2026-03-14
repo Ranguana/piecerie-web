@@ -15,7 +15,7 @@ export default function Home() {
             <span className="text-[#2d2d2d]">ie</span>
             <span className="text-[#d9a441]">c</span>
             <span className="text-[#2d2d2d]">e</span>
-            <span className="text-[#2d7d6e]">r</span>
+            <span className="text-[#6b7f5b]">r</span>
             <span className="text-[#2d2d2d]">ie</span>
           </Link>
           <nav className="flex gap-8 items-center">
@@ -33,7 +33,7 @@ export default function Home() {
             <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight mb-6">
               Stop managing inventory.
               <br />
-              <span className="text-[var(--muted)]">Start showing your work.</span>
+              <span className="text-[var(--muted)]"><span className="text-[#e85a4f]">S</span>tart <span className="text-[#d9a441]">s</span>howin<span className="text-[#6b7f5b]">g</span> your work.</span>
             </h1>
             <p className="text-base text-[var(--muted)] leading-relaxed mb-10 max-w-md">
               Inventory your work, generate line sheets, portfolios, and catalogs — and get back to the studio. All of it in minutes.
