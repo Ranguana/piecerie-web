@@ -34,8 +34,8 @@ export default function PricingPage() {
       <main className="max-w-6xl mx-auto px-8 py-20">
         <div className="text-center mb-20">
           <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-4">Pricing</p>
-          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
-            Your art, <span className="text-[#6b7f5b]">h</span>andled.
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight uppercase">
+            Your Art, <span className="text-[#6b7f5b] italic">Handled</span>.
           </h1>
         </div>
 
