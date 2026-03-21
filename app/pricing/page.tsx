@@ -93,7 +93,7 @@ export default function PricingPage() {
                 'Watermark-free exports',
                 'Custom branding & logo',
                 'Public artist profile with custom URL',
-                'Instagram, Etsy & Shopify integrations',
+                'Instagram & Shopify integrations',
                 'CSV import & export with collections',
                 'QR codes for your profile',
                 'Priority support',
@@ -121,7 +121,7 @@ export default function PricingPage() {
             {[
               { q: 'Can I try Pro before paying?', a: 'Yes. Start with a 7-day free trial. Cancel anytime.' },
               { q: 'What happens if I cancel Pro?', a: 'Your artwork stays safe. You\'ll be limited to 30 artworks and basic features.' },
-              { q: 'Which integrations are included?', a: 'Pro includes Instagram import, Shopify integration, and CSV import/export with auto-collection creation. Etsy integration is coming soon.' },
+              { q: 'Which integrations are included?', a: 'Pro includes Instagram import, Shopify integration, and CSV import/export with auto-collection creation.' },
               { q: 'Is there an annual plan?', a: 'Yes. $99/year saves 17% compared to monthly.' },
             ].map((faq) => (
               <div key={faq.q} className="border-b border-[var(--border)] pb-6">

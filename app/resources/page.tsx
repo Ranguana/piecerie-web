@@ -112,7 +112,7 @@ const sections = [
     questions: [
       {
         q: 'Can I sell through Piecerie?',
-        a: 'Piecerie connects to Shopify so you can list artwork directly from the app. Etsy integration is coming soon.',
+        a: 'Piecerie connects to Shopify so you can list artwork directly from the app.',
       },
       {
         q: 'How do I connect Shopify?',
