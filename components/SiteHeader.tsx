@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { APP_STORE_URL, BRAND } from '@/lib/brand'
+import { BRAND } from '@/lib/brand'
+import AppCtaButton from './AppCtaButton'
 import YellowButton from './YellowButton'
 
 interface SiteHeaderProps {
@@ -14,7 +15,6 @@ interface SiteHeaderProps {
 const NAV_LINKS = [
   { label: 'Pricing', href: '/pricing', external: false },
   { label: 'Resources', href: '/resources', external: false },
-  { label: 'Hunting Club', href: BRAND.huntingClubUrl, external: true },
 ] as const
 
 const NAV_LINK_CLASSES =
@@ -62,9 +62,7 @@ export default function SiteHeader({ minimal = false }: SiteHeaderProps) {
                   </Link>
                 ),
               )}
-              <YellowButton href={APP_STORE_URL} size="sm">
-                Get the app
-              </YellowButton>
+              <AppCtaButton size="sm" />
             </nav>
 
             {/* Mobile: three-bar menu, black panel with red border */}
@@ -92,9 +90,7 @@ export default function SiteHeader({ minimal = false }: SiteHeaderProps) {
                       {link.label}
                     </YellowButton>
                   ))}
-                  <YellowButton href={APP_STORE_URL} full variant="black" className="border border-yellow">
-                    Get the app
-                  </YellowButton>
+                  <AppCtaButton full variant="black" className="border border-yellow" />
                 </div>
                 <p className="mt-4 text-center font-heading text-[22px] leading-none tracking-[2px] text-white uppercase">
                   {BRAND.tagline}

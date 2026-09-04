@@ -3,7 +3,7 @@ import path from 'node:path'
 import { ImageResponse } from 'next/og'
 import { BRAND } from '@/lib/brand'
 
-export const alt = `${BRAND.name} — the artist app from ${BRAND.fullName}`
+export const alt = `${BRAND.appName} — the artist app from ${BRAND.fullName}`
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -56,7 +56,7 @@ export default function OpenGraphImage() {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 18, marginTop: 56 }}>
-          {['Shoot it.', 'Log it.', 'Sell it.'].map((line) => (
+          {['Shoot it.', 'Log it.', 'Sell out.'].map((line) => (
             <div
               key={line}
               style={{

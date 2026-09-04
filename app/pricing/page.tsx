@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import SiteHeader from '@/components/SiteHeader'
 import SiteFooter from '@/components/SiteFooter'
 import Slab from '@/components/Slab'
-import YellowButton from '@/components/YellowButton'
+import AppCtaButton from '@/components/AppCtaButton'
 import {
-  APP_STORE_URL,
   BRAND,
   TIERS,
   formatPrice,
@@ -25,11 +24,11 @@ const FAQ = [
   },
   {
     q: `What is the ${TIERS.friend.club}?`,
-    a: `${TIERS.friend.club} is ${BRAND.fullName}'s membership program. Joining as a ${TIERS.friend.name} unlocks everything in the app, puts you in the ${BRAND.name} Showcase, and gets you invited to in-person ${BRAND.name} events.`,
+    a: `${TIERS.friend.club} is ${BRAND.fullName}'s membership program. Joining as a ${TIERS.friend.name} unlocks everything in ${BRAND.appName}, puts you in the ${BRAND.name} Showcase, and gets you invited to in-person ${BRAND.name} events.`,
   },
   {
     q: `How does selling through ${BRAND.name} work?`,
-    a: `Submit any piece from the app. The ${BRAND.name} front desk reviews it and decides what to list at animalnewyork.com/shop. Selling is available on both plans; ${BRAND.name} does not charge a listing fee to submit. Terms for listed work are agreed with the front desk before anything goes live.`,
+    a: `Submit any piece from ${BRAND.appName}. The ${BRAND.name} front desk reviews it and decides what to list at animalnewyork.com/shop. Selling is available on both plans; ${BRAND.name} does not charge a listing fee to submit. Terms for listed work are agreed with the front desk before anything goes live.`,
   },
   {
     q: `What happens if I cancel?`,
@@ -95,9 +94,7 @@ export default function PricingPage() {
               <Benefits items={free.benefits} />
             </div>
             <div className="mt-8">
-              <YellowButton href={APP_STORE_URL} full>
-                Get the app
-              </YellowButton>
+              <AppCtaButton full />
             </div>
           </section>
 
@@ -122,17 +119,7 @@ export default function PricingPage() {
               <Benefits items={friend.benefits} />
             </div>
             <div className="mt-8 grid gap-3">
-              <YellowButton href={APP_STORE_URL} full>
-                Join in the app
-              </YellowButton>
-              <a
-                href={BRAND.huntingClubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mono self-center text-[14px] font-bold uppercase tracking-[1px]"
-              >
-                About the {friend.club}
-              </a>
+              <AppCtaButton full />
             </div>
           </section>
         </div>

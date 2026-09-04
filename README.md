@@ -1,6 +1,6 @@
 # ANIMAL Web — Marketing Site & Public Artist Profiles
 
-The public-facing website for **ANIMAL**, the artist app from [ANIMAL New York](https://animalnewyork.com) ("art. culture. nyc."). Landing page, pricing, help, legal pages, password reset, and public artist profile pages.
+The public-facing website for **ANIMAL SELL OUT**, the artist app from [ANIMAL New York](https://animalnewyork.com) ("art. culture. nyc."). Landing page, pricing, help, legal pages, password reset, and public artist profile pages.
 
 ## The two repos
 
@@ -35,7 +35,7 @@ Environment variables (Vercel dashboard and `.env.local`):
 ```
 /                    Landing page
 /pricing             Free vs Friend of ANIMAL (Hunting Club)
-/resources           How to use ANIMAL (FAQ)
+/resources           How to use ANIMAL SELL OUT (FAQ)
 /privacy             Privacy Policy   — used for App Store + Meta app review
 /terms               Terms of Service — used for App Store + Meta app review
 /reset-password      Password reset (linked from Supabase auth emails)

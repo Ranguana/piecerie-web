@@ -27,12 +27,12 @@ const courier = Courier_Prime({
 export const metadata: Metadata = {
   metadataBase: new URL(MARKETING_SITE_URL),
   title: {
-    default: `${BRAND.name} — The artist app from ${BRAND.fullName}`,
-    template: `%s · ${BRAND.name}`,
+    default: `${BRAND.appName} — The artist app from ${BRAND.fullName}`,
+    template: `%s · ${BRAND.appName}`,
   },
   description: `Inventory your work, make gallery-ready PDFs, and sell through ${BRAND.fullName}. ${BRAND.tagline}`,
   openGraph: {
-    siteName: BRAND.name,
+    siteName: BRAND.appName,
     type: "website",
   },
 };
@@ -42,9 +42,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Font variables live on <html> because globals.css consumes them in :root.
   return (
-    <html lang="en">
-      <body className={`${bebas.variable} ${lato.variable} ${courier.variable}`}>
+    <html lang="en" className={`${bebas.variable} ${lato.variable} ${courier.variable}`}>
+      <body>
         {children}
       </body>
     </html>

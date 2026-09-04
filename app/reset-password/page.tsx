@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import { APP_STORE_URL, BRAND } from '@/lib/brand'
+import { BRAND } from '@/lib/brand'
+import AppCtaButton from '@/components/AppCtaButton'
 import Slab from '@/components/Slab'
-import YellowButton from '@/components/YellowButton'
 
 const INPUT_CLASSES =
   'w-full border border-ink bg-white px-4 py-3 text-[16px] text-body placeholder:text-gray-rule focus:outline-none focus:border-red focus:ring-1 focus:ring-red'
@@ -120,7 +120,7 @@ export default function ResetPasswordPage() {
         <div className="mt-6 border-[5px] border-red p-5">
           <p className="font-bold text-ink">Invalid or missing reset token.</p>
           <p className="mt-2 text-body">
-            Open the {BRAND.name} app, tap &quot;Forgot Password&quot;, and request a new link.
+            Open {BRAND.appName}, tap &quot;Forgot Password&quot;, and request a new link.
           </p>
         </div>
         <p className="mono mt-6 text-[14px] uppercase tracking-[1px]">
@@ -139,13 +139,11 @@ export default function ResetPasswordPage() {
         <div className="mt-6 border border-ink p-5">
           <p className="mono text-[20px] font-bold leading-[30px] text-green-price">Done.</p>
           <p className="mt-2 text-body">
-            Sign in with your new password in the {BRAND.name} app or on the web.
+            Sign in with your new password in {BRAND.appName} or on the web.
           </p>
         </div>
         <div className="mt-6">
-          <YellowButton href={APP_STORE_URL} full>
-            Open the app
-          </YellowButton>
+          <AppCtaButton full />
         </div>
       </Shell>
     )

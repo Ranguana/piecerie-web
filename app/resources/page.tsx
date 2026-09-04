@@ -3,17 +3,18 @@ import SiteHeader from '@/components/SiteHeader'
 import SiteFooter from '@/components/SiteFooter'
 import Slab from '@/components/Slab'
 import YellowButton from '@/components/YellowButton'
+import AppCtaButton from '@/components/AppCtaButton'
 import {
-  APP_STORE_URL,
   BRAND,
   TIERS,
   WEB_APP_URL,
+  getAppCta,
   publicProfileDisplay,
 } from '@/lib/brand'
 
 export const metadata: Metadata = {
   title: 'Resources',
-  description: `How to use ${BRAND.name}: inventory, PDFs, imports, selling through ${BRAND.fullName}, and the ${TIERS.friend.club}.`,
+  description: `How to use ${BRAND.appName}: inventory, PDFs, imports, selling through ${BRAND.fullName}, and the ${TIERS.friend.club}.`,
 }
 
 const webAppDisplay = WEB_APP_URL.replace(/^https?:\/\//, '')
@@ -24,11 +25,11 @@ const sections = [
     questions: [
       {
         q: `What is ${BRAND.name}?`,
-        a: `${BRAND.name} is the artist app from ${BRAND.fullName}. Photograph your work, keep an inventory, generate professional PDFs (line sheets, catalogs, portfolios), and submit pieces to ${BRAND.name} for sale at animalnewyork.com/shop.`,
+        a: `${BRAND.appName} is the artist app from ${BRAND.fullName}. Photograph your work, keep an inventory, generate professional PDFs (line sheets, catalogs, portfolios), and submit pieces to ${BRAND.name} for sale at animalnewyork.com/shop.`,
       },
       {
         q: 'How do I sign up?',
-        a: `1. Download ${BRAND.name} from the App Store\n2. Tap "Sign Up" and enter your email\n3. Create a password (at least 6 characters)\n4. Check your email and tap the confirmation link\n5. You're in. Start adding your artwork.`,
+        a: `1. ${getAppCta().comingSoon ? `Email the front desk at ${BRAND.supportEmail} for beta access` : `Install ${BRAND.appName} from the TestFlight link`}\n2. Tap "Sign Up" and enter your email\n3. Create a password (at least 6 characters)\n4. Check your email and tap the confirmation link\n5. You're in. Start adding your artwork.`,
       },
       {
         q: 'How do I add my first artwork?',
@@ -216,7 +217,7 @@ export default function ResourcesPage() {
       <main className="mx-auto w-full max-w-4xl flex-1 px-4 py-14 sm:px-8 md:py-20">
         <p className="mono mb-4 text-[14px] uppercase tracking-[1px]">Resources</p>
         <Slab as="h1" size="lg">
-          How to use {BRAND.name}
+          How to use {BRAND.appName}
         </Slab>
         <p className="mt-6 max-w-xl text-[18px] leading-[28px]">
           Everything you need to get started, get organized, and get your work in front of{' '}
@@ -264,9 +265,7 @@ export default function ResourcesPage() {
             <YellowButton href={`mailto:${BRAND.supportEmail}`} variant="black">
               {BRAND.supportEmail}
             </YellowButton>
-            <YellowButton href={APP_STORE_URL} variant="outline">
-              Get the app
-            </YellowButton>
+            <AppCtaButton variant="outline" comingSoonVariant="outline" />
           </div>
         </div>
       </main>

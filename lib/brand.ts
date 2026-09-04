@@ -10,6 +10,10 @@
 export const BRAND = {
   /** Wordmark / product name as shown in the UI and on the phone. */
   name: 'ANIMAL',
+  /** The app as a product. The organization stays ANIMAL. */
+  appName: 'ANIMAL SELL OUT',
+  /** Short form, shown beside the wordmark in the app header. */
+  appNameShort: 'SELL OUT',
   /** Long-form name for legal / metadata copy. */
   fullName: 'ANIMAL New York',
   tagline: 'art. culture. nyc.',
@@ -27,7 +31,7 @@ export const BRAND = {
    */
   appUrl: process.env.NEXT_PUBLIC_APP_URL ?? 'https://piecerie.vercel.app',
   /** Footer line stamped on free-tier PDF exports. */
-  madeWith: 'Made with ANIMAL',
+  madeWith: 'Made with ANIMAL SELL OUT',
   /** Prefix for exported CSV filenames. */
   csvFilePrefix: 'animal-artworks',
   /** Path to the wordmark image in /public. */
@@ -91,6 +95,37 @@ export function publicProfileDisplay(slug: string): string {
 /** App Store listing for the iOS app. */
 // TODO: update once the ANIMAL app record exists in App Store Connect
 export const APP_STORE_URL = 'https://apps.apple.com/app/piecerie';
+
+/**
+ * Public TestFlight invite link. The app is beta-only (never approved on the
+ * App Store), so this is the real "get the app" destination. Empty until the
+ * link exists; see getAppCta() for what the site shows in the meantime.
+ */
+export const TESTFLIGHT_URL = process.env.NEXT_PUBLIC_TESTFLIGHT_URL ?? '';
+
+export interface AppCta {
+  label: string;
+  href: string;
+  /** True when there is no install link yet and the CTA is a mailto instead. */
+  comingSoon: boolean;
+}
+
+/**
+ * The one "get the app" call to action for the whole site. With a TestFlight
+ * link it invites people into the beta; without one it says so honestly and
+ * lets them email the front desk for early access.
+ */
+export function getAppCta(): AppCta {
+  if (TESTFLIGHT_URL) {
+    return { label: `Join the ${BRAND.appNameShort} beta`, href: TESTFLIGHT_URL, comingSoon: false };
+  }
+  const subject = encodeURIComponent(`${BRAND.appName} early access`);
+  return {
+    label: `${BRAND.appName} · coming soon`,
+    href: `mailto:${BRAND.supportEmail}?subject=${subject}`,
+    comingSoon: true,
+  };
+}
 
 /** The web build of the app (same account works on iOS and web). */
 export const WEB_APP_URL = BRAND.appUrl;

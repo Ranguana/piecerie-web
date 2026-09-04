@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { APP_STORE_URL, BRAND } from '@/lib/brand'
+import { BRAND, getAppCta } from '@/lib/brand'
 
 const FOOTER_LINKS = [
-  { label: 'App', href: APP_STORE_URL, external: true },
+  { label: 'App', href: getAppCta().href, external: true },
   { label: 'Pricing', href: '/pricing', external: false },
   { label: 'Resources', href: '/resources', external: false },
   { label: 'Privacy', href: '/privacy', external: false },

@@ -170,3 +170,102 @@
   font-weight: 700;
   color: var(--ink);
 }
+
+/* ---------- ANIMAL component grammar ----------
+   Mirrors the same classes in the app repo's globals.css so the landing demo
+   (components/AppDemo.tsx) renders the app's screens with the app's grammar.
+   In @layer components so utilities on the same element still win. */
+@layer components {
+  /* Yellow title slab (H1 treatment on the site). */
+  .slab {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--ink);
+    padding: 10px;
+    font-family: var(--stack-heading);
+    font-weight: 400;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+  }
+
+  /* Primary / nav button. */
+  .btn-yellow {
+    display: block;
+    width: 100%;
+    background: var(--yellow);
+    color: var(--ink);
+    padding: 5px 10px;
+    border: 0;
+    font-family: var(--stack-mono);
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: underline;
+    letter-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+  .btn-yellow:hover,
+  .btn-yellow:focus-visible {
+    background: var(--red);
+    color: #fff;
+    outline: none;
+  }
+
+  /* Date / author tag. */
+  .tag-black {
+    display: inline-block;
+    background: var(--ink);
+    color: #fff;
+    padding: 10px;
+    font-family: var(--stack-mono);
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .price {
+    font-family: var(--stack-mono);
+    font-weight: 700;
+    color: var(--green-price);
+  }
+}
+
+/* ---------- Landing hero phone ----------
+   The demo screens are authored at the iPhone's 390 x 844 logical size and
+   scaled down with one number. The frame's inner box is sized from the same
+   number so the two can never drift apart. */
+.phone-screen {
+  --demo-scale: 0.6154; /* 240px wide */
+  width: calc(390px * var(--demo-scale));
+  height: calc(844px * var(--demo-scale));
+}
+@media (min-width: 640px) {
+  .phone-screen {
+    --demo-scale: 0.7179; /* 280px wide */
+  }
+}
+
+.demo-screen {
+  width: 390px;
+  height: 844px;
+  transform-origin: top left;
+  transform: scale(var(--demo-scale));
+  animation: demo-fade 0.35s ease-out;
+}
+
+@keyframes demo-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-screen {
+    animation: none;
+  }
+}

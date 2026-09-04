@@ -54,7 +54,9 @@ export default function YellowButton({
   const isExternal = external ?? /^https?:\/\//.test(href)
   const classes = [
     'inline-block text-center font-mono font-bold uppercase underline tracking-[1px]',
-    'border-b-0 transition-colors',
+    'transition-colors',
+    // Kill the base <a> red underline rule; the outline variant draws its own border.
+    variant === 'outline' ? '' : 'border-b-0',
     VARIANT_CLASSES[variant],
     SIZE_CLASSES[size],
     full ? 'block w-full' : '',

@@ -2,12 +2,12 @@
 
 ## What This Is
 
-The public-facing marketing website for **ANIMAL**, the artist app from ANIMAL New York (animalnewyork.com, "art. culture. nyc."). It must look like it belongs to animalnewyork.com.
+The public-facing marketing website for **ANIMAL SELL OUT**, the artist app from ANIMAL New York (animalnewyork.com, "art. culture. nyc."). It must look like it belongs to animalnewyork.com.
 
 This site includes:
 - Landing page
 - Pricing page (Free vs Friend of ANIMAL / Hunting Club)
-- Resources / FAQ page ("How to use ANIMAL")
+- Resources / FAQ page ("How to use ANIMAL SELL OUT")
 - Privacy Policy (`/privacy`) and Terms of Service (`/terms`) — these URLs are submitted to Apple App Store review and Meta app review, so they must stay live and accurate
 - Password reset page (linked from Supabase auth emails)
 - Public artist profile pages at `/[artist-slug]`
@@ -24,7 +24,7 @@ This site includes:
 - **`animal-app`** (formerly `piecerie`) is the app: iOS via Capacitor plus a web build. Artists manage artwork, collections, exports, imports, and submit work to ANIMAL there.
 - **`animal-web`** (this repo, formerly `piecerie-web`) is the marketing site and public profiles.
 - Both share one Supabase project (same database, same auth).
-- `lib/brand.ts` here mirrors `lib/brand.ts` in the app repo. `BRAND` and `TIERS` must stay identical between the two. This repo adds `APP_STORE_URL`, `WEB_APP_URL`, and `MARKETING_SITE_URL` on top.
+- `lib/brand.ts` here mirrors `lib/brand.ts` in the app repo. `BRAND` and `TIERS` must stay identical between the two. This repo adds `APP_STORE_URL`, `TESTFLIGHT_URL`, `getAppCta()`, `WEB_APP_URL`, and `MARKETING_SITE_URL` on top. The product is `BRAND.appName` (ANIMAL SELL OUT); the organization is `BRAND.name` (ANIMAL). Use `AppCtaButton` for every get-the-app button.
 
 ## Brand Rules (non-negotiable)
 

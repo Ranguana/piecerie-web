@@ -2,12 +2,14 @@ import fs from 'node:fs'
 import path from 'node:path'
 import Image from 'next/image'
 import Link from 'next/link'
+import AppCtaButton from '@/components/AppCtaButton'
+import AppDemo from '@/components/AppDemo'
+import PhoneFrame from '@/components/PhoneFrame'
 import SiteHeader from '@/components/SiteHeader'
 import SiteFooter from '@/components/SiteFooter'
 import Slab from '@/components/Slab'
 import YellowButton from '@/components/YellowButton'
 import {
-  APP_STORE_URL,
   BRAND,
   SCREENSHOT_DIR,
   TIERS,
@@ -51,40 +53,23 @@ const IMPORTS = [
   { name: 'CSV', blurb: 'Bulk import a spreadsheet. Collections get made for you.' },
 ] as const
 
-function PhoneFrame({ hasScreenshot }: { hasScreenshot: boolean }) {
+/**
+ * Hero visual. A real screenshot wins when one has been dropped into
+ * public/screenshots; otherwise the live React demo of the app takes over.
+ */
+function HeroPhone({ hasScreenshot }: { hasScreenshot: boolean }) {
+  if (!hasScreenshot) return <AppDemo />
   return (
-    <div
-      className="relative mx-auto w-[260px] sm:w-[300px] border-[10px] border-ink bg-ink"
-      style={{ aspectRatio: '9 / 19.5' }}
-      aria-label={hasScreenshot ? `${BRAND.name} app home screen` : `${BRAND.name} app preview`}
-    >
-      {hasScreenshot ? (
-        <Image
-          src={`/screenshots/${HERO_SCREENSHOT}`}
-          alt={`${BRAND.name} app home screen`}
-          fill
-          sizes="(min-width: 640px) 300px, 260px"
-          className="object-contain bg-white"
-          priority
-        />
-      ) : (
-        <div className="flex h-full w-full flex-col items-center justify-center gap-6 bg-ink px-4">
-          <Slab as="div" size="xl">
-            {BRAND.name}
-          </Slab>
-          <p className="font-mono text-[14px] uppercase tracking-[1px] text-white">
-            screenshots coming
-          </p>
-          <Image
-            src="/brand/pigeon.svg"
-            alt=""
-            width={90}
-            height={63}
-            className="invert opacity-90"
-          />
-        </div>
-      )}
-    </div>
+    <PhoneFrame label={`${BRAND.appName} home screen`}>
+      <Image
+        src={`/screenshots/${HERO_SCREENSHOT}`}
+        alt={`${BRAND.appName} home screen`}
+        fill
+        sizes="(min-width: 640px) 280px, 240px"
+        className="bg-white object-contain"
+        priority
+      />
+    </PhoneFrame>
   )
 }
 
@@ -103,21 +88,19 @@ export default function Home() {
         <section className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-14 sm:px-8 md:grid-cols-[1.2fr_1fr] md:py-24">
           <div>
             <p className="mono mb-5 text-[14px] uppercase tracking-[1px] text-body">
-              The artist app from {BRAND.fullName}
+              {BRAND.appName} · the artist app from {BRAND.fullName}
             </p>
             <h1 className="mb-6 flex flex-col items-start gap-2 text-[40px] leading-[48px] sm:text-[56px] sm:leading-[64px]">
               <span className="inline-block bg-yellow p-[10px]">Shoot it.</span>
               <span className="inline-block bg-yellow p-[10px]">Log it.</span>
-              <span className="inline-block bg-yellow p-[10px]">Sell it.</span>
+              <span className="inline-block bg-yellow p-[10px]">Sell out.</span>
             </h1>
             <p className="mb-8 max-w-lg text-[18px] leading-[28px] text-body">
               Inventory your work, spit out gallery-ready PDFs, and sell through{' '}
               {BRAND.name} — all from your phone.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <YellowButton href={APP_STORE_URL} size="lg">
-                Get the app
-              </YellowButton>
+              <AppCtaButton size="lg" />
               <YellowButton href="/resources" variant="outline" size="lg">
                 See how it works
               </YellowButton>
@@ -126,7 +109,7 @@ export default function Home() {
               iOS. Free to start. Same account works on the web.
             </p>
           </div>
-          <PhoneFrame hasScreenshot={hasScreenshot} />
+          <HeroPhone hasScreenshot={hasScreenshot} />
         </section>
 
         <hr className="mx-auto max-w-6xl" />
@@ -137,12 +120,12 @@ export default function Home() {
             Sell through {BRAND.name}
           </Slab>
           <p className="mt-6 max-w-2xl text-[18px] leading-[28px]">
-            No gallery. No middleman with a website from 2009. Submit work from the app;
-            the {BRAND.name} front desk reviews it and lists selected pieces in the{' '}
+            Work directly with the gallery. Submit from your phone; {BRAND.name} curates,
+            lists, and sells your work in the{' '}
             <a href={BRAND.shopUrl} target="_blank" rel="noopener noreferrer">
               {BRAND.name} shop
             </a>
-            .
+            . No cold emails, no portfolio PDFs lost in someone&apos;s inbox.
           </p>
 
           <ol className="mt-12 grid gap-px bg-ink md:grid-cols-3">
@@ -245,9 +228,6 @@ export default function Home() {
                   <YellowButton href="/pricing" variant="black" size="lg">
                     See pricing
                   </YellowButton>
-                  <YellowButton href={BRAND.huntingClubUrl} variant="outline" size="lg">
-                    About the {friend.club}
-                  </YellowButton>
                 </div>
               </div>
               <div className="border border-ink bg-white p-6">
@@ -285,9 +265,7 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <YellowButton href={APP_STORE_URL} size="lg">
-                Get the app
-              </YellowButton>
+              <AppCtaButton size="lg" />
               <Link
                 href="/pricing"
                 className="mono self-center text-[14px] font-bold uppercase tracking-[1px]"
