@@ -1,3 +1,4 @@
+import AuthRedirectCatcher from '@/components/AuthRedirectCatcher'
 import type { Metadata } from "next";
 import { Bebas_Neue, Lato, Courier_Prime } from "next/font/google";
 import { BRAND, MARKETING_SITE_URL } from "@/lib/brand";
@@ -46,6 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bebas.variable} ${lato.variable} ${courier.variable}`}>
       <body>
+        <AuthRedirectCatcher />
         {children}
       </body>
     </html>

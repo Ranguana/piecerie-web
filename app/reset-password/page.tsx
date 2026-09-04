@@ -52,15 +52,26 @@ export default function ResetPasswordPage() {
     // synchronously inside the effect body.
     const recover = async (): Promise<'no-token' | 'invalid' | 'ready'> => {
       const hash = window.location.hash
-      if (!hash || !hash.includes('access_token')) return 'no-token'
+      const search = new URLSearchParams(window.location.search)
 
-      // Parse the hash to get the access token
+      // PKCE flow: Supabase sends ?code= instead of hash tokens.
+      const code = search.get('code')
+      if (code) {
+        const { error } = await supabase.auth.exchangeCodeForSession(code)
+        return error ? 'invalid' : 'ready'
+      }
+
+      if (!hash) return 'no-token'
       const params = new URLSearchParams(hash.substring(1))
+
+      // Supabase reports expired/used links as #error=...&error_description=...
+      if (params.get('error')) return 'invalid'
+
       const accessToken = params.get('access_token')
       const refreshToken = params.get('refresh_token')
-      const type = params.get('type')
-
-      if (type !== 'recovery' || !accessToken || !refreshToken) return 'no-token'
+      if (!accessToken || !refreshToken) return 'no-token'
+      // Any auth email (recovery, magic link, invite) is a valid reason to let
+      // the user set a password, so we do not gate on type === 'recovery'.
 
       // Set the session with the recovery tokens
       const { error } = await supabase.auth.setSession({
