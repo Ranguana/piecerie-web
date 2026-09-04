@@ -13,7 +13,6 @@ import {
   BRAND,
   SCREENSHOT_DIR,
   TIERS,
-  formatPrice,
 } from '@/lib/brand'
 
 /** Hero screenshot. Drop the real file at public/screenshots/app-home.png. */
@@ -77,7 +76,6 @@ export default function Home() {
   const hasScreenshot = fs.existsSync(
     path.join(process.cwd(), SCREENSHOT_DIR, HERO_SCREENSHOT),
   )
-  const friend = TIERS.friend
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -203,53 +201,6 @@ export default function Home() {
               </li>
             ))}
           </ul>
-        </section>
-
-        {/* Hunting Club */}
-        <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-8 md:pt-12">
-          <div className="border-[5px] border-red bg-yellow p-6 sm:p-10 md:p-14">
-            <div className="grid items-start gap-10 md:grid-cols-[1.3fr_1fr]">
-              <div>
-                <h2 className="text-[40px] leading-[46px] text-red sm:text-[50px] sm:leading-[60px]">
-                  Join the {friend.club}
-                </h2>
-                <p className="mt-4 max-w-xl text-[18px] leading-[28px] text-ink">
-                  {friend.name} is {BRAND.name}&apos;s membership for working artists. Unlimited
-                  inventory, every template, a public profile, and a seat at the table when
-                  {' '}{BRAND.name} does something in real life.
-                </p>
-                <p className="mono mt-6 text-[20px] font-bold leading-[30px] text-ink">
-                  {formatPrice(friend.priceMonthly)}/mo{' '}
-                  <span className="text-[16px] font-normal">
-                    or {formatPrice(friend.priceYearly)}/year
-                  </span>
-                </p>
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                  <YellowButton href="/pricing" variant="black" size="lg">
-                    See pricing
-                  </YellowButton>
-                </div>
-              </div>
-              <div className="border border-ink bg-white p-6">
-                <div className="mb-4 flex items-center justify-between">
-                  <p className="mono text-[13px] font-bold uppercase tracking-[1px]">
-                    {friend.name} · benefits
-                  </p>
-                  <Image src="/brand/pigeon.svg" alt="" width={44} height={31} />
-                </div>
-                <ul className="space-y-2">
-                  {friend.benefits.map((benefit) => (
-                    <li key={benefit} className="flex gap-3 text-[15px] leading-[22px]">
-                      <span className="mono font-bold text-red" aria-hidden="true">
-                        +
-                      </span>
-                      <span>{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
         </section>
 
         {/* Bottom CTA */}
