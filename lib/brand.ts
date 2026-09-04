@@ -80,7 +80,8 @@ export const TIERS = {
 
 /** Full URL to an artist's public profile. */
 export function publicProfileUrl(slug: string): string {
-  return `${BRAND.appUrl}/p/${slug}`;
+  // Public profiles live on this marketing site at the root: piecerie.com/<slug>.
+  return `${MARKETING_SITE_URL}/${slug}`;
 }
 
 /** Same URL without the protocol, for display in tight UI. */
