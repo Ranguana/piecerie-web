@@ -1,21 +1,34 @@
-import Link from 'next/link'
+import type { Metadata } from 'next'
+import SiteHeader from '@/components/SiteHeader'
+import SiteFooter from '@/components/SiteFooter'
+import Slab from '@/components/Slab'
+import YellowButton from '@/components/YellowButton'
+import {
+  APP_STORE_URL,
+  BRAND,
+  TIERS,
+  WEB_APP_URL,
+  publicProfileDisplay,
+} from '@/lib/brand'
 
-export const metadata = {
-  title: 'Resources - Piecerie',
-  description: 'Learn how to use Piecerie to manage your artwork, create PDFs, and more.',
+export const metadata: Metadata = {
+  title: 'Resources',
+  description: `How to use ${BRAND.name}: inventory, PDFs, imports, selling through ${BRAND.fullName}, and the ${TIERS.friend.club}.`,
 }
+
+const webAppDisplay = WEB_APP_URL.replace(/^https?:\/\//, '')
 
 const sections = [
   {
     category: 'Getting Started',
     questions: [
       {
-        q: 'What is Piecerie?',
-        a: 'Piecerie is an app for artists to catalog their artwork and create professional documents like line sheets, catalogs, and portfolios. Take photos of your work, add details, and generate beautiful PDFs in seconds.',
+        q: `What is ${BRAND.name}?`,
+        a: `${BRAND.name} is the artist app from ${BRAND.fullName}. Photograph your work, keep an inventory, generate professional PDFs (line sheets, catalogs, portfolios), and submit pieces to ${BRAND.name} for sale at animalnewyork.com/shop.`,
       },
       {
         q: 'How do I sign up?',
-        a: '1. Download Piecerie from the App Store\n2. Tap "Sign Up" and enter your email\n3. Create a password (at least 6 characters)\n4. Check your email and tap the confirmation link\n5. You\'re in! Start adding your artwork.',
+        a: `1. Download ${BRAND.name} from the App Store\n2. Tap "Sign Up" and enter your email\n3. Create a password (at least 6 characters)\n4. Check your email and tap the confirmation link\n5. You're in. Start adding your artwork.`,
       },
       {
         q: 'How do I add my first artwork?',
@@ -23,7 +36,7 @@ const sections = [
       },
       {
         q: 'Is my data backed up?',
-        a: 'Yes. All your artwork and data is securely stored in the cloud and synced across your devices.',
+        a: 'Yes. All your artwork and data is stored securely in the cloud and synced across your devices.',
       },
     ],
   },
@@ -32,11 +45,11 @@ const sections = [
     questions: [
       {
         q: 'How do I edit artwork details?',
-        a: 'Tap on any artwork in your gallery to view it, then tap "Edit Info" to change the title, description, medium, dimensions, price, or other details.',
+        a: 'Tap any artwork in your gallery to view it, then tap "Edit Info" to change the title, description, medium, dimensions, price, or other details.',
       },
       {
         q: 'Can I organize artwork into groups?',
-        a: 'Yes! Use Collections to group related artwork. Go to "Collections" to create one, then tap any artwork in your gallery and use the Collection dropdown to assign it.',
+        a: 'Yes. Use Collections to group related artwork. Go to "Collections" to create one, then tap any artwork in your gallery and use the Collection dropdown to assign it.',
       },
       {
         q: 'How do I reorder my artwork?',
@@ -44,7 +57,53 @@ const sections = [
       },
       {
         q: 'Can I delete artwork?',
-        a: 'Yes. Tap on the artwork, scroll down, and tap "Delete". This cannot be undone.',
+        a: 'Yes. Tap the artwork, scroll down, and tap "Delete". This cannot be undone.',
+      },
+    ],
+  },
+  {
+    category: `Selling through ${BRAND.name}`,
+    questions: [
+      {
+        q: `How do I sell my work through ${BRAND.name}?`,
+        a: `Open any artwork in the app and tap "Submit to ${BRAND.name}". The ${BRAND.name} front desk reviews every submission and decides what to list at animalnewyork.com/shop. You will hear back in the app either way.`,
+      },
+      {
+        q: 'What do the submission statuses mean?',
+        a: `Submitted — the front desk has your piece.\nUnder review — someone at ${BRAND.name} is looking at it.\nListed — it's live in the ${BRAND.name} shop.\nDeclined — not a fit right now. You can submit other work anytime.`,
+      },
+      {
+        q: 'Can I withdraw a submission?',
+        a: `Yes, at any time and at any status. Open the artwork and tap "Withdraw". If the piece was already listed, it comes down from the shop.`,
+      },
+      {
+        q: `Who decides what gets listed?`,
+        a: `${BRAND.fullName}. Submitting does not guarantee a listing. Pricing, commission, and shipping for listed work are agreed with the front desk before anything goes live. Questions go to ${BRAND.submissionsEmail}.`,
+      },
+      {
+        q: 'Do I need a paid plan to sell?',
+        a: `No. Submitting work to ${BRAND.name} is included on the ${TIERS.free.name} plan.`,
+      },
+    ],
+  },
+  {
+    category: TIERS.friend.club,
+    questions: [
+      {
+        q: `What is the ${TIERS.friend.club}?`,
+        a: `The ${TIERS.friend.club} is ${BRAND.fullName}'s membership program. Inside the app, joining makes you a ${TIERS.friend.name}: unlimited artworks, every PDF template with no footer, custom branding, and a public profile with your own URL and QR code.`,
+      },
+      {
+        q: 'What is the Showcase?',
+        a: `A page on animalnewyork.com featuring current ${TIERS.friend.name}s and their work. Members are added automatically once their public profile is switched on.`,
+      },
+      {
+        q: 'What about events?',
+        a: `${BRAND.name} produces shows, openings, and other things in real life in New York. ${TIERS.friend.name}s get invited.`,
+      },
+      {
+        q: 'How do I join?',
+        a: `From the app: Settings → ${TIERS.friend.club}. Billing goes through the App Store. See the pricing page for current rates.`,
       },
     ],
   },
@@ -57,7 +116,7 @@ const sections = [
       },
       {
         q: 'Does CSV import create collections automatically?',
-        a: 'Yes! If your CSV has a "collection" column, any collection names will be matched to existing collections or created as new ones. All artworks with that collection name get assigned automatically.',
+        a: 'Yes. If your CSV has a "collection" column, any collection names will be matched to existing collections or created as new ones. All artworks with that collection name get assigned automatically.',
       },
       {
         q: 'What columns does the CSV support?',
@@ -65,7 +124,7 @@ const sections = [
       },
       {
         q: 'Can I export my inventory as a CSV?',
-        a: 'Yes! On the Export page, select your artworks and click "Export to CSV". This creates a spreadsheet backup with all your artwork data including collection names. You can edit it and re-import later.',
+        a: `Yes. On the Export page, select your artworks and tap "Export to CSV". This creates a spreadsheet backup with all your artwork data including collection names (files are named ${BRAND.csvFilePrefix}-…). You can edit it and re-import later.`,
       },
     ],
   },
@@ -82,10 +141,10 @@ const sections = [
       },
       {
         q: 'Can I add my logo to PDFs?',
-        a: 'Yes. Upload a logo in Profile settings. It will automatically appear on your exported PDFs.',
+        a: `Yes. Upload a logo in Profile settings. It will appear on your exported PDFs. ${TIERS.free.name} exports carry a small "${BRAND.madeWith}" footer; ${TIERS.friend.name}s export without it.`,
       },
       {
-        q: 'What\'s the difference between Line Sheet and Catalog?',
+        q: "What's the difference between Line Sheet and Catalog?",
         a: 'Line Sheet shows multiple pieces per page with pricing — ideal for wholesale buyers. Catalog shows one or two per page with full details — great for exhibitions and galleries.',
       },
     ],
@@ -95,28 +154,15 @@ const sections = [
     questions: [
       {
         q: 'What is a portfolio page?',
-        a: 'A public webpage at piecerie.com/yourname where visitors can view your artwork and contact info.',
+        a: `A public webpage at ${publicProfileDisplay('yourname')} where visitors can view your artwork and contact info.`,
       },
       {
         q: 'How do I set up my portfolio?',
         a: 'Go to Profile settings, fill in your details, set a URL slug, and toggle "Public Profile" on.',
       },
       {
-        q: 'How do I control what\'s visible?',
+        q: "How do I control what's visible?",
         a: 'Only collections marked as "Public" appear on your portfolio.',
-      },
-    ],
-  },
-  {
-    category: 'Selling Artwork',
-    questions: [
-      {
-        q: 'Can I sell through Piecerie?',
-        a: 'Piecerie connects to Shopify so you can list artwork directly from the app.',
-      },
-      {
-        q: 'How do I connect Shopify?',
-        a: 'Go to the Sell page, enter your Shopify store name, and authorize the connection. Then tap any artwork in your gallery and use the "Sell on Shopify" button to list it.',
       },
     ],
   },
@@ -129,11 +175,15 @@ const sections = [
       },
       {
         q: 'Will it import duplicates?',
-        a: 'No. Piecerie tracks which Instagram posts you\'ve already imported and skips them.',
+        a: `No. ${BRAND.name} tracks which Instagram posts you've already imported and skips them.`,
+      },
+      {
+        q: 'Can I connect Shopify?',
+        a: 'Yes. Go to the Sell page, enter your Shopify store name, and authorize the connection. Then tap any artwork in your gallery and use "Sell on Shopify" to list it in your own store.',
       },
       {
         q: 'Can I import from a spreadsheet?',
-        a: 'Yes! CSV import lets you bulk-add artwork info from any spreadsheet. Include a "collection" column to auto-create and assign collections. Add photos later.',
+        a: 'Yes. CSV import lets you bulk-add artwork info from any spreadsheet. Include a "collection" column to auto-create and assign collections. Add photos later.',
       },
     ],
   },
@@ -142,112 +192,86 @@ const sections = [
     questions: [
       {
         q: 'Can I use multiple devices?',
-        a: 'Yes! Piecerie works on the iOS app and on the web at piecerie.vercel.app. Sign in with the same account on either and everything stays in sync.',
+        a: `Yes. ${BRAND.name} works on the iOS app and on the web at ${webAppDisplay}. Sign in with the same account on either and everything stays in sync.`,
       },
       {
         q: 'How do I reset my password?',
         a: 'Tap "Forgot Password" on the login screen and follow the email instructions.',
       },
+      {
+        q: 'How do I delete my account and data?',
+        a: `Email ${BRAND.supportEmail} from the address on your account. We delete your account, artworks, photos, and profile within 30 days and confirm by email.`,
+      },
     ],
   },
 ]
 
+const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+
 export default function ResourcesPage() {
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--background)]/95 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto px-8 py-4 flex items-center justify-between">
-          <Link
-            href="/"
-            className="text-xl font-bold tracking-tight uppercase"
-            style={{ fontFamily: 'var(--font-archivo), system-ui, sans-serif' }}
-          >
-            <span className="text-[#6b7f5b]">P</span>
-            <span className="text-[#2d2d2d]">ie</span>
-            <span className="text-[#6b7f5b]">c</span>
-            <span className="text-[#2d2d2d]">e</span>
-            <span className="text-[#6b7f5b]">r</span>
-            <span className="text-[#2d2d2d]">ie</span>
-          </Link>
-          <nav className="flex gap-8 items-center">
-            <Link href="/resources" className="text-[11px] uppercase tracking-[0.15em] text-[#6b7f5b] border-b border-[#5a6350] pb-0.5">Resources</Link>
-            <Link href="/pricing" className="text-[11px] uppercase tracking-[0.15em] text-[#6b7f5b] hover:text-[var(--foreground)]">Pricing</Link>
-          </nav>
-        </div>
-      </header>
+    <div className="flex min-h-screen flex-col">
+      <SiteHeader />
 
-      {/* Content */}
-      <main className="max-w-4xl mx-auto px-8 py-20">
-        <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-4">Resources</p>
-        <h1 className="text-3xl md:text-5xl font-semibold tracking-tight mb-4">
-          How to use <span className="text-[#6b7f5b]">P</span>iecerie
-        </h1>
-        <p className="text-base text-[var(--foreground)] mb-16 max-w-xl">
-          Everything you need to know to get started and make the most of your account.
+      <main className="mx-auto w-full max-w-4xl flex-1 px-4 py-14 sm:px-8 md:py-20">
+        <p className="mono mb-4 text-[14px] uppercase tracking-[1px]">Resources</p>
+        <Slab as="h1" size="lg">
+          How to use {BRAND.name}
+        </Slab>
+        <p className="mt-6 max-w-xl text-[18px] leading-[28px]">
+          Everything you need to get started, get organized, and get your work in front of{' '}
+          {BRAND.name}.
         </p>
 
         {/* Table of Contents */}
-        <div className="border border-[var(--border)] p-8 mb-20 rounded-xl bg-[var(--surface)]">
-          <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-4">Contents</p>
-          <div className="flex flex-wrap gap-x-8 gap-y-3">
+        <nav className="mt-12 border border-ink p-6" aria-label="Contents">
+          <p className="mono mb-4 text-[13px] font-bold uppercase tracking-[1px]">Contents</p>
+          <ul className="flex flex-wrap gap-x-6 gap-y-3">
             {sections.map((section) => (
-              <a
-                key={section.category}
-                href={`#${section.category.toLowerCase().replace(/\s+/g, '-')}`}
-                className="text-sm hover:text-[#6b7f5b]"
-              >
-                {section.category}
-              </a>
+              <li key={section.category}>
+                <a href={`#${slugify(section.category)}`} className="mono text-[14px] font-bold uppercase tracking-[1px]">
+                  {section.category}
+                </a>
+              </li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </nav>
 
         {/* Sections */}
-        <div className="space-y-20">
+        <div className="mt-16 space-y-16">
           {sections.map((section) => (
-            <div key={section.category} id={section.category.toLowerCase().replace(/\s+/g, '-')}>
-              <h2 className="text-xl font-semibold tracking-tight mb-8 pb-4 border-b border-[var(--border)]">
+            <section key={section.category} id={slugify(section.category)} className="scroll-mt-6">
+              <Slab as="h2" size="md">
                 {section.category}
-              </h2>
-              <div className="grid gap-8">
-                {section.questions.map((item, index) => (
-                  <div key={index}>
-                    <h3 className="font-medium mb-2">{item.q}</h3>
-                    <p className="text-[var(--foreground)] text-sm whitespace-pre-line leading-relaxed">{item.a}</p>
+              </Slab>
+              <dl className="mt-6 divide-y divide-gray-rule border-t border-gray-rule">
+                {section.questions.map((item) => (
+                  <div key={item.q} className="py-6">
+                    <dt className="font-heading text-[25px] leading-[28px] uppercase">{item.q}</dt>
+                    <dd className="mt-2 whitespace-pre-line text-body">{item.a}</dd>
                   </div>
                 ))}
-              </div>
-            </div>
+              </dl>
+            </section>
           ))}
         </div>
 
         {/* Still need help */}
-        <div className="mt-24 border border-[var(--border)] p-12 text-center rounded-xl bg-[var(--surface)]">
-          <h2 className="text-2xl font-semibold tracking-tight mb-4">Still have questions?</h2>
-          <p className="text-[var(--foreground)] mb-8">
-            We&apos;re here to help.
-          </p>
-          <a
-            href="mailto:support@piecerie.com"
-            className="inline-block bg-[var(--accent)] text-white px-8 py-3.5 text-sm tracking-wide rounded-lg hover:bg-[var(--accent-light)]"
-          >
-            Contact Support
-          </a>
+        <div className="mt-20 border-[5px] border-red bg-yellow p-8 text-center sm:p-12">
+          <h2 className="text-[40px] leading-[46px] text-red">Still stuck?</h2>
+          <p className="mt-3">The front desk answers email. Really.</p>
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <YellowButton href={`mailto:${BRAND.supportEmail}`} variant="black">
+              {BRAND.supportEmail}
+            </YellowButton>
+            <YellowButton href={APP_STORE_URL} variant="outline">
+              Get the app
+            </YellowButton>
+          </div>
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-[var(--border)] mt-20">
-        <div className="max-w-6xl mx-auto px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-[var(--foreground)]">
-          <div>&copy; {new Date().getFullYear()} Piecerie</div>
-          <div className="flex gap-8">
-            <Link href="/resources" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Resources</Link>
-            <Link href="/pricing" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Pricing</Link>
-            <a href="mailto:support@piecerie.com" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Contact</a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

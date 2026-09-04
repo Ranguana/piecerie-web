@@ -1,175 +1,305 @@
+import fs from 'node:fs'
+import path from 'node:path'
+import Image from 'next/image'
 import Link from 'next/link'
+import SiteHeader from '@/components/SiteHeader'
+import SiteFooter from '@/components/SiteFooter'
+import Slab from '@/components/Slab'
+import YellowButton from '@/components/YellowButton'
+import {
+  APP_STORE_URL,
+  BRAND,
+  SCREENSHOT_DIR,
+  TIERS,
+  formatPrice,
+} from '@/lib/brand'
+
+/** Hero screenshot. Drop the real file at public/screenshots/app-home.png. */
+const HERO_SCREENSHOT = 'app-home.png'
+
+const SELL_STEPS = [
+  {
+    label: '01 / SUBMIT',
+    title: 'Pick a piece. Tap submit.',
+    body: `Any artwork in your inventory can be sent to the ${BRAND.name} front desk straight from the app. Photos, dimensions, price, done.`,
+  },
+  {
+    label: '02 / REVIEW',
+    title: 'The front desk looks at everything.',
+    body: `Real people at ${BRAND.fullName} review every submission. You see the status in the app: submitted, under review, listed, or declined.`,
+  },
+  {
+    label: '03 / LISTED',
+    title: 'Selected work goes up in the shop.',
+    body: `Pieces that make the cut are listed at animalnewyork.com/shop, next to the artists ${BRAND.name} already sells. Withdraw anytime.`,
+  },
+] as const
+
+const TEMPLATES = [
+  { n: '01', name: 'Line Sheet', blurb: 'SKU, wholesale, retail. For buyers.' },
+  { n: '02', name: 'Catalog', blurb: 'One or two pieces a page, full details.' },
+  { n: '03', name: 'Portfolio', blurb: 'Big images, no noise. For galleries.' },
+  { n: '04', name: 'Grid', blurb: 'Everything at a glance.' },
+  { n: '05', name: 'Consignment', blurb: 'Terms and signature lines built in.' },
+  { n: '06', name: 'Invoice', blurb: 'Get paid without opening a spreadsheet.' },
+] as const
+
+const IMPORTS = [
+  { name: 'Camera', blurb: 'Shoot it in the studio or pull from your photo library.' },
+  { name: 'Instagram', blurb: 'Pick posts, captions become descriptions. No duplicates.' },
+  { name: 'Shopify', blurb: 'Connect your store and list from the app.' },
+  { name: 'CSV', blurb: 'Bulk import a spreadsheet. Collections get made for you.' },
+] as const
+
+function PhoneFrame({ hasScreenshot }: { hasScreenshot: boolean }) {
+  return (
+    <div
+      className="relative mx-auto w-[260px] sm:w-[300px] border-[10px] border-ink bg-ink"
+      style={{ aspectRatio: '9 / 19.5' }}
+      aria-label={hasScreenshot ? `${BRAND.name} app home screen` : `${BRAND.name} app preview`}
+    >
+      {hasScreenshot ? (
+        <Image
+          src={`/screenshots/${HERO_SCREENSHOT}`}
+          alt={`${BRAND.name} app home screen`}
+          fill
+          sizes="(min-width: 640px) 300px, 260px"
+          className="object-contain bg-white"
+          priority
+        />
+      ) : (
+        <div className="flex h-full w-full flex-col items-center justify-center gap-6 bg-ink px-4">
+          <Slab as="div" size="xl">
+            {BRAND.name}
+          </Slab>
+          <p className="font-mono text-[14px] uppercase tracking-[1px] text-white">
+            screenshots coming
+          </p>
+          <Image
+            src="/brand/pigeon.svg"
+            alt=""
+            width={90}
+            height={63}
+            className="invert opacity-90"
+          />
+        </div>
+      )}
+    </div>
+  )
+}
 
 export default function Home() {
+  const hasScreenshot = fs.existsSync(
+    path.join(process.cwd(), SCREENSHOT_DIR, HERO_SCREENSHOT),
+  )
+  const friend = TIERS.friend
+
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--background)]/95 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto px-8 py-4 flex items-center justify-between">
-          <Link
-            href="/"
-            className="text-xl font-bold tracking-tight uppercase"
-            style={{ fontFamily: 'var(--font-archivo), system-ui, sans-serif' }}
-          >
-            <span className="text-[#6b7f5b]">P</span>
-            <span className="text-[#2d2d2d]">ie</span>
-            <span className="text-[#6b7f5b]">c</span>
-            <span className="text-[#2d2d2d]">e</span>
-            <span className="text-[#6b7f5b]">r</span>
-            <span className="text-[#2d2d2d]">ie</span>
-          </Link>
-          <nav className="flex gap-8 items-center">
-            <Link href="/resources" className="text-[11px] uppercase tracking-[0.15em] text-[#6b7f5b] hover:text-[var(--foreground)]">Resources</Link>
-            <Link href="/pricing" className="text-[11px] uppercase tracking-[0.15em] text-[#6b7f5b] hover:text-[var(--foreground)]">Pricing</Link>
-          </nav>
-        </div>
-      </header>
+    <div className="flex min-h-screen flex-col">
+      <SiteHeader />
 
       <main className="flex-1">
         {/* Hero */}
-        <section className="max-w-6xl mx-auto px-8 py-20 md:py-28 grid md:grid-cols-2 gap-16 items-center">
+        <section className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-14 sm:px-8 md:grid-cols-[1.2fr_1fr] md:py-24">
           <div>
-            <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-4">For Artists</p>
-            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight mb-6">
-              Stop managing inventory.
-              <br />
-              <span className="text-[#6b7f5b]">Start showing your work.</span>
-            </h1>
-            <p className="text-base text-[var(--foreground)] leading-relaxed mb-10 max-w-md">
-              Inventory your work, generate line sheets, portfolios, and catalogs — and get back to the studio. All of it in minutes.
+            <p className="mono mb-5 text-[14px] uppercase tracking-[1px] text-body">
+              The artist app from {BRAND.fullName}
             </p>
-            <div className="flex gap-4">
-              <Link
-                href="https://apps.apple.com/app/piecerie"
-                className="bg-[var(--accent)] text-white px-8 py-3.5 text-sm tracking-wide rounded-lg hover:bg-[var(--accent-light)]"
-              >
-                Download App
-              </Link>
-              <Link
-                href="/resources"
-                className="border border-[var(--border)] px-8 py-3.5 text-sm tracking-wide rounded-lg text-[var(--foreground)] hover:border-[var(--accent)]"
-              >
-                Learn More
-              </Link>
+            <h1 className="mb-6 flex flex-col items-start gap-2 text-[40px] leading-[48px] sm:text-[56px] sm:leading-[64px]">
+              <span className="inline-block bg-yellow p-[10px]">Shoot it.</span>
+              <span className="inline-block bg-yellow p-[10px]">Log it.</span>
+              <span className="inline-block bg-yellow p-[10px]">Sell it.</span>
+            </h1>
+            <p className="mb-8 max-w-lg text-[18px] leading-[28px] text-body">
+              Inventory your work, spit out gallery-ready PDFs, and sell through{' '}
+              {BRAND.name} — all from your phone.
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <YellowButton href={APP_STORE_URL} size="lg">
+                Get the app
+              </YellowButton>
+              <YellowButton href="/resources" variant="outline" size="lg">
+                See how it works
+              </YellowButton>
             </div>
+            <p className="mono mt-5 text-[13px] text-gray-rule">
+              iOS. Free to start. Same account works on the web.
+            </p>
           </div>
-          <div className="hidden md:block">
-            <div className="aspect-[4/5] bg-[var(--surface)] border border-[var(--border)] rounded-xl flex items-center justify-center">
-              <span className="text-[#6b7f5b] text-lg">App Preview</span>
+          <PhoneFrame hasScreenshot={hasScreenshot} />
+        </section>
+
+        <hr className="mx-auto max-w-6xl" />
+
+        {/* Sell through ANIMAL */}
+        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-8 md:py-24">
+          <Slab as="h2" size="md">
+            Sell through {BRAND.name}
+          </Slab>
+          <p className="mt-6 max-w-2xl text-[18px] leading-[28px]">
+            No gallery. No middleman with a website from 2009. Submit work from the app;
+            the {BRAND.name} front desk reviews it and lists selected pieces in the{' '}
+            <a href={BRAND.shopUrl} target="_blank" rel="noopener noreferrer">
+              {BRAND.name} shop
+            </a>
+            .
+          </p>
+
+          <ol className="mt-12 grid gap-px bg-ink md:grid-cols-3">
+            {SELL_STEPS.map((step) => (
+              <li key={step.label} className="bg-white p-6 sm:p-8">
+                <p className="mono mb-4 inline-block bg-ink px-[10px] py-[6px] text-[14px] font-bold uppercase tracking-[1px] text-white">
+                  {step.label}
+                </p>
+                <h3 className="mb-3 text-[28px] leading-[32px]">{step.title}</h3>
+                <p className="text-body">{step.body}</p>
+              </li>
+            ))}
+          </ol>
+
+          <p className="mono mt-8 text-[14px] uppercase tracking-[1px]">
+            {BRAND.name} picks what goes up. You keep making work.
+          </p>
+        </section>
+
+        <hr className="mx-auto max-w-6xl" />
+
+        {/* Pro documents */}
+        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-8 md:py-24">
+          <Slab as="h2" size="md">
+            Paperwork that doesn&apos;t look like paperwork
+          </Slab>
+          <p className="mt-6 max-w-2xl text-[18px] leading-[28px]">
+            Six PDF templates built for galleries, collectors, and wholesale buyers. Pick
+            your pieces, pick a template, tap once. Your logo on top if you want it.
+          </p>
+
+          <ul className="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+            {TEMPLATES.map((tmpl) => (
+              <li
+                key={tmpl.name}
+                className="relative flex aspect-square flex-col justify-between border border-ink bg-white p-4 sm:p-5"
+              >
+                <div className="flex items-start justify-between">
+                  <span className="mono text-[13px] font-bold uppercase tracking-[1px]">
+                    PDF · {tmpl.n}
+                  </span>
+                  <span className="block h-[5px] w-10 bg-red" aria-hidden="true" />
+                </div>
+                <div>
+                  <Slab as="h3" size="sm" className="-ml-[15px]">
+                    {tmpl.name}
+                  </Slab>
+                  <p className="mono mt-3 text-[13px] leading-[18px] text-body">{tmpl.blurb}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <hr className="mx-auto max-w-6xl" />
+
+        {/* Imports */}
+        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-8 md:py-24">
+          <Slab as="h2" size="md">
+            Get your work in
+          </Slab>
+          <p className="mt-6 max-w-2xl text-[18px] leading-[28px]">
+            Your inventory is probably scattered across a camera roll, a grid, a store,
+            and a spreadsheet. Pull it all into one place.
+          </p>
+
+          <ul className="mt-12 grid gap-px bg-ink sm:grid-cols-2 lg:grid-cols-4">
+            {IMPORTS.map((item, i) => (
+              <li key={item.name} className="bg-white p-6">
+                <p className="mono text-[13px] font-bold uppercase tracking-[1px] text-gray-rule">
+                  Import · 0{i + 1}
+                </p>
+                <h3 className="mt-2 text-[28px] leading-[32px]">{item.name}</h3>
+                <p className="mt-2 text-body">{item.blurb}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Hunting Club */}
+        <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-8 md:pt-12">
+          <div className="border-[5px] border-red bg-yellow p-6 sm:p-10 md:p-14">
+            <div className="grid items-start gap-10 md:grid-cols-[1.3fr_1fr]">
+              <div>
+                <h2 className="text-[40px] leading-[46px] text-red sm:text-[50px] sm:leading-[60px]">
+                  Join the {friend.club}
+                </h2>
+                <p className="mt-4 max-w-xl text-[18px] leading-[28px] text-ink">
+                  {friend.name} is {BRAND.name}&apos;s membership for working artists. Unlimited
+                  inventory, every template, a public profile, and a seat at the table when
+                  {' '}{BRAND.name} does something in real life.
+                </p>
+                <p className="mono mt-6 text-[20px] font-bold leading-[30px] text-ink">
+                  {formatPrice(friend.priceMonthly)}/mo{' '}
+                  <span className="text-[16px] font-normal">
+                    or {formatPrice(friend.priceYearly)}/year
+                  </span>
+                </p>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <YellowButton href="/pricing" variant="black" size="lg">
+                    See pricing
+                  </YellowButton>
+                  <YellowButton href={BRAND.huntingClubUrl} variant="outline" size="lg">
+                    About the {friend.club}
+                  </YellowButton>
+                </div>
+              </div>
+              <div className="border border-ink bg-white p-6">
+                <div className="mb-4 flex items-center justify-between">
+                  <p className="mono text-[13px] font-bold uppercase tracking-[1px]">
+                    {friend.name} · benefits
+                  </p>
+                  <Image src="/brand/pigeon.svg" alt="" width={44} height={31} />
+                </div>
+                <ul className="space-y-2">
+                  {friend.benefits.map((benefit) => (
+                    <li key={benefit} className="flex gap-3 text-[15px] leading-[22px]">
+                      <span className="mono font-bold text-red" aria-hidden="true">
+                        +
+                      </span>
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Features */}
-        <section className="border-t border-[var(--border)] bg-white">
-          <div className="max-w-6xl mx-auto px-8 py-24">
-            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-              {/* Templates */}
-              <div>
-                <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-4">Templates</p>
-                <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4">
-                  Professional PDFs in <span className="text-[#6b7f5b]">s</span>econds
-                </h2>
-                <p className="text-base text-[var(--foreground)] mb-12">
-                  Choose from six templates designed for galleries, collectors, and wholesale buyers.
-                </p>
-
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-                  {[
-                    { name: 'Line Sheet', rows: 2, cols: 3 },
-                    { name: 'Catalog', rows: 2, cols: 1 },
-                    { name: 'Portfolio', rows: 1, cols: 1 },
-                    { name: 'Grid', rows: 2, cols: 3 },
-                    { name: 'Consignment', rows: 3, cols: 2 },
-                    { name: 'Invoice', rows: 4, cols: 1 },
-                  ].map((tmpl) => (
-                    <div key={tmpl.name}>
-                      <div className="bg-white border border-[var(--border)] p-3 mb-3 rounded-lg hover:border-[var(--accent)] transition-colors">
-                        <div className={`grid gap-1 ${tmpl.cols === 3 ? 'grid-cols-3' : tmpl.cols === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
-                          {Array.from({ length: tmpl.rows * tmpl.cols }).map((_, i) => (
-                            <div key={i} className={`w-full ${tmpl.cols === 1 && tmpl.rows === 1 ? 'h-20' : 'h-8'} bg-[var(--surface)] rounded-sm`} />
-                          ))}
-                        </div>
-                      </div>
-                      <h3 className="text-sm font-medium">{tmpl.name}</h3>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Import & Integrations */}
-              <div>
-                <p className="text-[11px] tracking-[0.2em] uppercase text-[#6b7f5b] mb-4">Import</p>
-                <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4">
-                  Your art, your way <span className="text-[#6b7f5b]">i</span>n
-                </h2>
-                <p className="text-base text-[var(--foreground)] mb-12">
-                  Upload photos, import from Instagram, connect Shopify, or bulk import from a spreadsheet.
-                </p>
-
-                <div className="grid grid-cols-2 gap-6">
-                  {/* Instagram */}
-                  <div className="text-center">
-                    <div className="w-14 h-14 mx-auto mb-3 bg-[var(--accent)] rounded-xl flex items-center justify-center">
-                      <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                      </svg>
-                    </div>
-                    <h3 className="text-sm font-medium mb-1">Instagram</h3>
-                    <p className="text-xs text-[#6b7f5b]">Import your posts</p>
-                  </div>
-
-                  {/* Shopify */}
-                  <div className="text-center">
-                    <div className="w-14 h-14 mx-auto mb-3 bg-[var(--accent)] rounded-xl flex items-center justify-center">
-                      <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M15.337 3.415c-.025-.145-.139-.218-.243-.218-.104 0-2.097-.155-2.097-.155s-1.392-1.377-1.54-1.525c-.147-.147-.436-.103-.548-.069 0 0-.285.088-.758.234-.088-.272-.244-.6-.456-.927C9.175.013 8.415 0 7.797 0c-2.097 0-3.1 2.622-3.415 3.954-.821.254-1.405.435-1.479.459-.461.144-.476.158-.537.594C2.314 5.365.039 22.899.039 22.899l14.848 2.549V3.458c0-.013-.013-.031-.025-.043h-.525z"/>
-                      </svg>
-                    </div>
-                    <h3 className="text-sm font-medium mb-1">Shopify</h3>
-                    <p className="text-xs text-[#6b7f5b]">Publish to your store</p>
-                  </div>
-
-                  {/* CSV */}
-                  <div className="text-center">
-                    <div className="w-14 h-14 mx-auto mb-3 bg-[var(--accent)] rounded-xl flex items-center justify-center">
-                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0112 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M12 10.875v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125M10.875 12c-.621 0-1.125.504-1.125 1.125M12 12c.621 0 1.125.504 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m0-1.5v1.5m0 0c0 .621-.504 1.125-1.125 1.125m1.125-1.125c0 .621.504 1.125 1.125 1.125" />
-                      </svg>
-                    </div>
-                    <h3 className="text-sm font-medium mb-1">CSV Import</h3>
-                    <p className="text-xs text-[#6b7f5b]">Bulk import from spreadsheet</p>
-                  </div>
-
-                  {/* Upload */}
-                  <div className="text-center">
-                    <div className="w-14 h-14 mx-auto mb-3 bg-[var(--accent)] rounded-xl flex items-center justify-center">
-                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-sm font-medium mb-1">Camera</h3>
-                    <p className="text-xs text-[#6b7f5b]">Photo or library</p>
-                  </div>
-                </div>
-              </div>
+        {/* Bottom CTA */}
+        <section className="mx-auto max-w-6xl px-4 pt-16 sm:px-8 md:pt-24">
+          <div className="flex flex-col items-start gap-6 border-t border-gray-rule pt-10 md:flex-row md:items-center md:justify-between">
+            <div>
+              <Slab as="h2" size="md">
+                Stop managing. Start showing.
+              </Slab>
+              <p className="mt-4 max-w-md">
+                Free for your first {TIERS.free.artworkLimit} pieces. Questions? Write the front desk at{' '}
+                <a href={`mailto:${BRAND.supportEmail}`}>{BRAND.supportEmail}</a>.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <YellowButton href={APP_STORE_URL} size="lg">
+                Get the app
+              </YellowButton>
+              <Link
+                href="/pricing"
+                className="mono self-center text-[14px] font-bold uppercase tracking-[1px]"
+              >
+                Compare plans
+              </Link>
             </div>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-[var(--border)]">
-        <div className="max-w-6xl mx-auto px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-[var(--foreground)]">
-          <div>&copy; {new Date().getFullYear()} Piecerie</div>
-          <div className="flex gap-8">
-            <Link href="/resources" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Resources</Link>
-            <Link href="/pricing" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Pricing</Link>
-            <a href="mailto:support@piecerie.com" className="text-[#6b7f5b] hover:text-[var(--foreground)]">Contact</a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

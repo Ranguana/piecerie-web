@@ -1,0 +1,82 @@
+/**
+ * Single source of truth for brand identity, URLs, and membership tiers.
+ * Every user-facing name, link, or price should come from here so a future
+ * change (domain move, price change, new tier) is a one-file edit.
+ */
+
+export const BRAND = {
+  /** Wordmark / product name as shown in the UI and on the phone. */
+  name: 'ANIMAL',
+  /** Long-form name for legal / metadata copy. */
+  fullName: 'ANIMAL New York',
+  tagline: 'art. culture. nyc.',
+  siteUrl: 'https://animalnewyork.com',
+  shopUrl: 'https://animalnewyork.com/shop/',
+  huntingClubUrl: 'https://animalnewyork.com/hunting-club/',
+  instagramHandle: 'animalnewyork',
+  instagramUrl: 'https://www.instagram.com/animalnewyork/',
+  /** Where artists' questions and artwork submissions go. */
+  supportEmail: 'frontdesk@animalnewyork.com',
+  submissionsEmail: 'frontdesk@animalnewyork.com',
+  /**
+   * Origin the app itself is served from. Public profile links are built from
+   * this. Override with NEXT_PUBLIC_APP_URL once the app has its own domain.
+   */
+  appUrl: process.env.NEXT_PUBLIC_APP_URL ?? 'https://piecerie.vercel.app',
+  /** Footer line stamped on free-tier PDF exports. */
+  madeWith: 'Made with ANIMAL',
+  /** Prefix for exported CSV filenames. */
+  csvFilePrefix: 'animal-artworks',
+  /** Path to the wordmark image in /public. */
+  wordmarkSrc: '/brand/animal-wordmark.png',
+} as const;
+
+export type MembershipTier = 'free' | 'friend';
+
+export const TIERS = {
+  free: {
+    id: 'free' as const,
+    name: 'Free',
+    priceMonthly: 0,
+    priceYearly: 0,
+    artworkLimit: 30,
+    benefits: [
+      'Up to 30 artworks',
+      'Basic image editing',
+      '3 PDF templates (with ANIMAL footer)',
+      'Instagram import',
+      'Portfolio page',
+      'Sell your work through ANIMAL',
+    ],
+  },
+  friend: {
+    id: 'friend' as const,
+    name: 'Friend of ANIMAL',
+    /** The membership program the paid tier belongs to. */
+    club: 'Hunting Club',
+    priceMonthly: 9.99,
+    priceYearly: 99,
+    artworkLimit: Infinity,
+    benefits: [
+      'Everything in Free',
+      'Unlimited artworks',
+      'All PDF templates, no footer',
+      'Custom branding on exports',
+      'Public artist profile with custom URL and QR code',
+      'Featured in the ANIMAL Showcase',
+      'Invitations to in-person ANIMAL events',
+      'Shopify integration',
+      'Priority support',
+    ],
+  },
+} as const;
+
+/** Full URL to an artist's public profile. */
+export function publicProfileUrl(slug: string): string {
+  return `${BRAND.appUrl}/p/${slug}`;
+}
+
+/** Same URL without the protocol, for display in tight UI. */
+export function publicProfileDisplay(slug: string): string {
+  return publicProfileUrl(slug).replace(/^https?:\/\//, '');
+}

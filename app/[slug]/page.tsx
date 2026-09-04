@@ -1,7 +1,10 @@
+import type { Metadata } from 'next'
 import { supabase } from '@/lib/supabase'
 import { Profile, Artwork, Collection } from '@/types'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
+import SiteHeader from '@/components/SiteHeader'
+import Slab from '@/components/Slab'
+import { BRAND } from '@/lib/brand'
 import ProfileContent from './ProfileContent'
 
 interface PageProps {
@@ -51,17 +54,30 @@ async function getPublicCollectionsWithArtworks(userId: string): Promise<(Collec
   }))
 }
 
-export async function generateMetadata({ params }: PageProps) {
+/** Only render http(s) links the artist typed in; anything else is dropped. */
+function safeWebsite(raw: string): string | null {
+  const candidate = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`
+  try {
+    const url = new URL(candidate)
+    return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : null
+  } catch {
+    return null
+  }
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const profile = await getProfile(slug)
 
   if (!profile) {
-    return { title: 'Profile Not Found - Piecerie' }
+    return { title: 'Profile Not Found' }
   }
 
+  const name = profile.display_name || 'Artist'
   return {
-    title: `${profile.display_name || 'Artist'} - Piecerie`,
-    description: profile.bio || `View artwork by ${profile.display_name || 'this artist'} on Piecerie`,
+    // Layout template appends " · ANIMAL"
+    title: name,
+    description: profile.bio || `View artwork by ${name} on ${BRAND.name}`,
   }
 }
 
@@ -74,93 +90,91 @@ export default async function ProfilePage({ params }: PageProps) {
   }
 
   const collections = await getPublicCollectionsWithArtworks(profile.user_id)
+  const name = profile.display_name || 'Artist'
+  const instagram = profile.instagram?.replace('@', '')
+  const website = profile.website ? safeWebsite(profile.website) : null
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="border-b">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/">
-            <img src="/logo.png" alt="Piecerie" className="h-8" />
-          </Link>
-        </div>
-      </header>
+    <div className="flex min-h-screen flex-col bg-white">
+      <SiteHeader minimal />
 
-      {/* Profile Section */}
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row gap-8 mb-12">
-          {/* Logo/Avatar */}
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-8 md:py-14">
+        {/* Profile header */}
+        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-start md:gap-10">
           {profile.logo_url && (
-            <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-100 flex-shrink-0">
+            <div className="h-32 w-32 flex-shrink-0 border border-ink bg-white p-2">
+              {/* eslint-disable-next-line @next/next/no-img-element -- artist-hosted image, never cropped */}
               <img
                 src={profile.logo_url}
-                alt={profile.display_name || 'Artist'}
-                className="w-full h-full object-cover"
+                alt={name}
+                className="h-full w-full object-contain"
               />
             </div>
           )}
 
-          {/* Info */}
           <div className="flex-1">
-            <h1 className="text-3xl font-bold mb-2">
-              {profile.display_name || 'Artist'}
-            </h1>
+            <Slab as="h1" size="lg">
+              {name}
+            </Slab>
 
             {profile.bio && (
-              <p className="text-gray-600 mb-4 whitespace-pre-wrap">{profile.bio}</p>
+              <p className="mt-5 max-w-2xl whitespace-pre-wrap text-body">{profile.bio}</p>
             )}
 
-            {/* Contact Info */}
-            <div className="flex flex-wrap gap-4 text-sm">
+            <ul className="mono mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[14px] uppercase tracking-[1px]">
               {profile.contact_email && (
-                <a
-                  href={`mailto:${profile.contact_email}`}
-                  className="text-blue-600 hover:underline"
-                >
-                  {profile.contact_email}
-                </a>
+                <li>
+                  <a href={`mailto:${profile.contact_email}`}>{profile.contact_email}</a>
+                </li>
               )}
-              {profile.website && (
-                <a
-                  href={profile.website.startsWith('http') ? profile.website : `https://${profile.website}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  Website
-                </a>
+              {website && (
+                <li>
+                  <a href={website} target="_blank" rel="noopener noreferrer">
+                    Website
+                  </a>
+                </li>
               )}
-              {profile.instagram && (
-                <a
-                  href={`https://instagram.com/${profile.instagram.replace('@', '')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  @{profile.instagram.replace('@', '')}
-                </a>
+              {instagram && (
+                <li>
+                  <a
+                    href={`https://instagram.com/${instagram}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    @{instagram}
+                  </a>
+                </li>
               )}
               {profile.contact_phone && (
-                <a href={`tel:${profile.contact_phone}`} className="text-gray-600">
-                  {profile.contact_phone}
-                </a>
+                <li>
+                  <a href={`tel:${profile.contact_phone}`}>{profile.contact_phone}</a>
+                </li>
               )}
-            </div>
+            </ul>
           </div>
         </div>
 
-        {/* Artwork Content with View Toggle */}
-        <ProfileContent collections={collections} />
-      </div>
+        <hr />
 
-      {/* Footer */}
-      <footer className="border-t mt-12">
-        <div className="max-w-6xl mx-auto px-4 py-6 text-center text-sm text-gray-500">
-          Powered by{' '}
-          <a href="https://piecerie.com" className="text-blue-600 hover:underline">
-            Piecerie
-          </a>
+        {/* Artwork Content with View Toggle */}
+        <div className="mt-8">
+          <ProfileContent collections={collections} />
         </div>
+      </main>
+
+      {/* Compact footer: this is the artist's page, not ours */}
+      <footer className="mt-12 bg-ink py-8 text-center">
+        <p className="mono text-[14px] uppercase tracking-[1px] text-white">
+          Powered by{' '}
+          <a
+            href={BRAND.siteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-yellow border-yellow hover:text-white hover:border-white"
+          >
+            {BRAND.name}
+          </a>
+        </p>
       </footer>
     </div>
   )

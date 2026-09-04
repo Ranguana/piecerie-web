@@ -7,6 +7,17 @@ interface Props {
   collections: (Collection & { artworks: Artwork[] })[]
 }
 
+const TOGGLE_BASE =
+  'font-mono font-bold uppercase tracking-[1px] text-[14px] px-4 py-2 border border-ink transition-colors'
+
+function Price({ amount }: { amount: number }) {
+  return (
+    <span className="font-mono text-[20px] font-bold leading-[30px] text-green-price">
+      ${amount.toLocaleString()}
+    </span>
+  )
+}
+
 export default function ProfileContent({ collections }: Props) {
   const [view, setView] = useState<'gallery' | 'linesheet'>('gallery')
 
@@ -15,7 +26,7 @@ export default function ProfileContent({ collections }: Props) {
 
   if (allArtworks.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">
+      <div className="mono py-12 text-center text-[14px] uppercase tracking-[1px] text-gray-rule">
         No public artworks yet
       </div>
     )
@@ -24,24 +35,24 @@ export default function ProfileContent({ collections }: Props) {
   return (
     <div>
       {/* View Toggle */}
-      <div className="flex justify-end mb-6">
-        <div className="inline-flex rounded-lg border border-gray-200 p-1">
+      <div className="mb-8 flex justify-end">
+        <div className="inline-flex" role="group" aria-label="View">
           <button
+            type="button"
             onClick={() => setView('gallery')}
-            className={`px-4 py-2 text-sm rounded-md transition-colors ${
-              view === 'gallery'
-                ? 'bg-black text-white'
-                : 'text-gray-600 hover:text-black'
+            aria-pressed={view === 'gallery'}
+            className={`${TOGGLE_BASE} ${
+              view === 'gallery' ? 'bg-ink text-white' : 'bg-white text-ink hover:bg-yellow'
             }`}
           >
             Gallery
           </button>
           <button
+            type="button"
             onClick={() => setView('linesheet')}
-            className={`px-4 py-2 text-sm rounded-md transition-colors ${
-              view === 'linesheet'
-                ? 'bg-black text-white'
-                : 'text-gray-600 hover:text-black'
+            aria-pressed={view === 'linesheet'}
+            className={`${TOGGLE_BASE} -ml-px ${
+              view === 'linesheet' ? 'bg-ink text-white' : 'bg-white text-ink hover:bg-yellow'
             }`}
           >
             Line Sheet
@@ -51,78 +62,82 @@ export default function ProfileContent({ collections }: Props) {
 
       {view === 'gallery' ? (
         // Gallery View - grouped by collection
-        <div className="space-y-12">
+        <div className="space-y-16">
           {collections.map((collection) => (
-            <div key={collection.id}>
-              <h2 className="text-xl font-semibold mb-4">{collection.name}</h2>
+            <section key={collection.id}>
+              <h2 className="inline-block bg-yellow p-[10px] text-[25px] leading-[28px]">
+                {collection.name}
+              </h2>
               {collection.description && (
-                <p className="text-gray-600 mb-4">{collection.description}</p>
+                <p className="mt-4 max-w-2xl text-body">{collection.description}</p>
               )}
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <ul className="mt-6 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
                 {collection.artworks.map((artwork) => (
-                  <div key={artwork.id} className="group">
-                    <div className="aspect-square rounded-lg overflow-hidden bg-gray-100">
+                  <li key={artwork.id}>
+                    <div className="aspect-square border border-ink bg-white p-2">
+                      {/* eslint-disable-next-line @next/next/no-img-element -- artist-hosted image, never cropped */}
                       <img
                         src={artwork.image_url}
                         alt={artwork.title}
-                        className="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
+                        loading="lazy"
+                        className="h-full w-full object-contain"
                       />
                     </div>
-                    <div className="mt-2">
-                      <h3 className="font-medium text-sm truncate">{artwork.title}</h3>
+                    <div className="mt-3">
+                      <h3 className="truncate text-[22px] leading-[24px]">{artwork.title}</h3>
                       {artwork.medium && (
-                        <p className="text-xs text-gray-500">{artwork.medium}</p>
+                        <p className="mono text-[13px] uppercase tracking-[1px] text-body">{artwork.medium}</p>
                       )}
-                      {artwork.price && (
-                        <p className="text-sm font-medium">${artwork.price.toLocaleString()}</p>
-                      )}
+                      {artwork.price != null && artwork.price > 0 && <Price amount={artwork.price} />}
                     </div>
-                  </div>
+                  </li>
                 ))}
-              </div>
-            </div>
+              </ul>
+            </section>
           ))}
         </div>
       ) : (
         // Line Sheet View
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto border border-ink">
           <table className="w-full border-collapse">
             <thead>
-              <tr className="border-b-2 border-gray-200">
-                <th className="text-left py-3 px-2 text-sm font-semibold">Image</th>
-                <th className="text-left py-3 px-2 text-sm font-semibold">SKU</th>
-                <th className="text-left py-3 px-2 text-sm font-semibold">Title</th>
-                <th className="text-left py-3 px-2 text-sm font-semibold">Medium</th>
-                <th className="text-left py-3 px-2 text-sm font-semibold">Size</th>
-                <th className="text-right py-3 px-2 text-sm font-semibold">Price</th>
+              <tr className="bg-ink text-white">
+                {['Image', 'SKU', 'Title', 'Medium', 'Size', 'Price'].map((col, i) => (
+                  <th
+                    key={col}
+                    className={`mono px-3 py-3 text-[13px] font-bold uppercase tracking-[1px] ${
+                      i === 5 ? 'text-right' : 'text-left'
+                    }`}
+                  >
+                    {col}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
               {allArtworks.map((artwork) => (
-                <tr key={artwork.id} className="border-b border-gray-100 hover:bg-gray-50">
-                  <td className="py-2 px-2">
-                    <div className="w-16 h-16 rounded overflow-hidden bg-gray-100">
+                <tr key={artwork.id} className="border-b border-gray-rule last:border-b-0 hover:bg-yellow/30">
+                  <td className="px-3 py-2">
+                    <div className="h-16 w-16 border border-ink bg-white p-1">
+                      {/* eslint-disable-next-line @next/next/no-img-element -- artist-hosted image, never cropped */}
                       <img
                         src={artwork.image_url}
                         alt={artwork.title}
-                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        className="h-full w-full object-contain"
                       />
                     </div>
                   </td>
-                  <td className="py-2 px-2 text-sm text-gray-600">
-                    {artwork.sku || '-'}
-                  </td>
-                  <td className="py-2 px-2 text-sm font-medium">
-                    {artwork.title}
-                  </td>
-                  <td className="py-2 px-2 text-sm text-gray-600">
-                    {artwork.medium || '-'}
-                  </td>
-                  <td className="py-2 px-2 text-sm text-gray-600">
-                    {artwork.dimensions || '-'}
-                  </td>
-                  <td className="py-2 px-2 text-sm font-medium text-right">
-                    {artwork.price ? `$${artwork.price.toLocaleString()}` : '-'}
+                  <td className="mono px-3 py-2 text-[14px] text-body">{artwork.sku || '-'}</td>
+                  <td className="px-3 py-2 font-heading text-[20px] leading-[22px] uppercase">{artwork.title}</td>
+                  <td className="px-3 py-2 text-[14px] text-body">{artwork.medium || '-'}</td>
+                  <td className="mono px-3 py-2 text-[14px] text-body">{artwork.dimensions || '-'}</td>
+                  <td className="px-3 py-2 text-right">
+                    {artwork.price != null && artwork.price > 0 ? (
+                      <Price amount={artwork.price} />
+                    ) : (
+                      <span className="mono text-[14px] text-body">-</span>
+                    )}
                   </td>
                 </tr>
               ))}

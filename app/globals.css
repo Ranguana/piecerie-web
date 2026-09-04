@@ -1,39 +1,172 @@
 @import "tailwindcss";
 
+/*
+ * ANIMAL New York design tokens.
+ * Source: notes/animal-style-spec.md (captured from animalnewyork.com).
+ * Fonts are loaded in app/layout.tsx via next/font and exposed as
+ * --font-bebas, --font-lato, --font-courier.
+ */
 :root {
-  --background: #fafafa;
-  --foreground: #1a1a1a;
-  --accent: #4a5240;
-  --accent-light: #5a6350;
-  --muted: #8c8c8c;
-  --border: #e5e5e5;
-  --surface: #f5f5f4;
-  --olive: #6b7f5b;
+  --bg: #ffffff;
+  --ink: #000000;
+  --body-text: #212529;
+  --yellow: #ffea03;
+  --yellow-alt: #ffe905;
+  --red: #ff0000;
+  --green-price: #03d43e;
+  --gray-menu: #4e555b;
+  --gray-rule: #808080;
+  --primary-bs: #5533ff;
+  --overlay: rgba(0, 0, 0, 0.7);
+  --stock: #958e09;
+
+  --stack-heading: var(--font-bebas), "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  --stack-body: var(--font-lato), Lato, "Helvetica Neue", Arial, sans-serif;
+  --stack-mono: "Courier New", var(--font-courier), "Courier Prime", Courier, monospace;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-bg: var(--bg);
+  --color-ink: var(--ink);
+  --color-body: var(--body-text);
+  --color-yellow: var(--yellow);
+  --color-yellow-alt: var(--yellow-alt);
+  --color-red: var(--red);
+  --color-green-price: var(--green-price);
+  --color-gray-menu: var(--gray-menu);
+  --color-gray-rule: var(--gray-rule);
+  --color-primary-bs: var(--primary-bs);
+  --color-stock: var(--stock);
+
+  --font-heading: var(--stack-heading);
+  --font-sans: var(--stack-body);
+  --font-mono: var(--stack-mono);
+
+  /* Border radius is 0 everywhere on ANIMAL. */
+  --radius-xs: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --radius-3xl: 0;
+  --radius-4xl: 0;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-radius: 0;
+  }
+
+  html {
+    background: var(--bg);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--body-text);
+    font-family: var(--stack-body);
+    font-size: 16px;
+    line-height: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--stack-heading);
+    font-weight: 400;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0;
+  }
+
+  h1 {
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  h2 {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  h3 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  /* Content links: black text with a 1px red rule, red on hover. */
+  a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--red);
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  a:hover {
+    color: var(--red);
+  }
+
+  button {
+    transition: color 0.15s ease, background-color 0.15s ease;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--gray-rule);
+  }
+
+  ::selection {
+    background: var(--yellow);
+    color: var(--ink);
+  }
 }
 
-h1, h2, h3 {
-  font-family: var(--font-archivo), system-ui, sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+/* Courier stack used for prices, labels, dates, and buttons. */
+.mono {
+  font-family: var(--stack-mono);
 }
 
-a, button {
-  transition: all 0.2s ease;
+/* Long-form legal / help copy. */
+.legal h2 {
+  margin-top: 40px;
+  margin-bottom: 12px;
+  font-size: 28px;
+  line-height: 32px;
 }
 
-::selection {
-  background: var(--olive);
-  color: white;
+.legal h3 {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  font-size: 22px;
+  line-height: 26px;
+}
+
+.legal p,
+.legal ul,
+.legal ol {
+  margin-bottom: 16px;
+}
+
+.legal ul {
+  list-style: square;
+  padding-left: 20px;
+}
+
+.legal ol {
+  list-style: decimal;
+  padding-left: 20px;
+}
+
+.legal li {
+  margin-bottom: 6px;
+}
+
+.legal strong {
+  font-weight: 700;
+  color: var(--ink);
 }
