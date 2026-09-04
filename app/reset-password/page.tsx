@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import { BRAND } from '@/lib/brand'
-import AppCtaButton from '@/components/AppCtaButton'
+import { BRAND, WEB_APP_URL } from '@/lib/brand'
 import Slab from '@/components/Slab'
 
 const INPUT_CLASSES =
@@ -139,11 +138,16 @@ export default function ResetPasswordPage() {
         <div className="mt-6 border border-ink p-5">
           <p className="mono text-[20px] font-bold leading-[30px] text-green-price">Done.</p>
           <p className="mt-2 text-body">
-            Sign in with your new password in {BRAND.appName} or on the web.
+            Open {BRAND.appName} on your phone and log in with your new password.
           </p>
         </div>
         <div className="mt-6">
-          <AppCtaButton full />
+          <a
+            href={`${WEB_APP_URL}/login`}
+            className="mono block border border-ink px-4 py-3 text-center text-[14px] font-bold uppercase tracking-[1px] text-ink no-underline hover:bg-ink hover:text-white"
+          >
+            Or log in on the web
+          </a>
         </div>
       </Shell>
     )
